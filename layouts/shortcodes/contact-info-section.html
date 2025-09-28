@@ -1,0 +1,285 @@
+﻿<style>
+    .contact-info-section {
+        margin: 4rem 0;
+    }
+
+    .contact-info-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: #1f262b;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+    .contact-info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 3rem;
+        align-items: start;
+    }
+
+    .contact-details {
+        background: white;
+        border-radius: 12px;
+        padding: 2.5rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        height: fit-content;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+    .contact-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, #4472c4, #365899);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+        .contact-icon i {
+            color: white;
+            font-size: 18px;
+        }
+
+    .contact-content h3 {
+        color: #1f262b;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .contact-content p {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    .contact-content a {
+        color: #4472c4;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .contact-content a:hover {
+            text-decoration: underline;
+        }
+
+    .map-container {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        position: relative;
+        height: 400px;
+    }
+
+    .map-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .map-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #f5f7f9, #e8ecf0);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        color: #666;
+    }
+
+    .map-placeholder-icon {
+        font-size: 48px;
+        margin-bottom: 1rem;
+        color: #4472c4;
+    }
+
+    .quick-contact-cta {
+        text-align: center;
+        margin-top: 2rem;
+        padding: 2rem;
+        background: linear-gradient(135deg, #4472c4, #365899);
+        border-radius: 12px;
+        color: white;
+    }
+
+        .quick-contact-cta h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .quick-contact-cta p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.8rem;
+        background: white;
+        color: #4472c4;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+    @media (max-width: 768px) {
+        .contact-info-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .contact-details {
+            padding: 2rem 1.5rem;
+        }
+
+        .map-container {
+            height: 300px;
+        }
+
+        .section-title h2 {
+            font-size: 1.6rem;
+        }
+    }
+</style>
+
+<div class="contact-info-section">
+    <div class="contact-info-container">
+        <div class="section-title">
+            <h2>Our Location</h2>
+            <p>Visit us or reach out through any of these channels</p>
+        </div>
+
+        <div class="contact-info-grid">
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="material-icons">location_on</i>
+                    </div>
+                    <div class="contact-content">
+                        <h3>Address</h3>
+                        <p>506 S SPRING ST #13308<br>LOS ANGELES, CA 90013</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="material-icons">phone</i>
+                    </div>
+                    <div class="contact-content">
+                        <h3>Phone</h3>
+                        <p><a href="tel:+15107797984">(510) 779-7984</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="material-icons">email</i>
+                    </div>
+                    <div class="contact-content">
+                        <h3>Email</h3>
+                        <p><a href="mailto:infos@turbotides.com">infos@turbotides.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="material-icons">schedule</i>
+                    </div>
+                    <div class="contact-content">
+                        <h3>Business Hours</h3>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Pacific Time</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe class="map-iframe"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.7348954567755!2d-118.25258368433!3d34.04596558060678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c634f5c8e833%3A0x7b2e3b1c8e5d9f4a!2s506%20S%20Spring%20St%20%2313308%2C%20Los%20Angeles%2C%20CA%2090013!5e0!3m2!1sen!2sus!4v1635789123456!5m2!1sen!2sus"
+                        loading="lazy">
+                </iframe>
+                <div class="map-placeholder">
+                    <div class="map-placeholder-icon">🗺️</div>
+                    <p><strong>Map Loading...</strong><br>Click to view on Google Maps</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=506+S+Spring+St+%2313308+Los+Angeles+CA+90013"
+                       target="_blank" class="cta-button">Open in Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-contact-cta">
+            <h3>Ready to Get Started?</h3>
+            <p>Have a specific project in mind? Let's discuss how TurboTides can help accelerate your turbomachinery design process.</p>
+            <a href="#contact-form" class="cta-button">
+                <i class="material-icons" style="font-size: 18px;">send</i>
+                Send Message
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.querySelector('.map-iframe');
+    const placeholder = document.querySelector('.map-placeholder');
+
+    if (iframe && placeholder) {
+        const loadTimeout = setTimeout(function() {
+            iframe.style.display = 'none';
+            placeholder.style.display = 'flex';
+        }, 5000);
+
+        iframe.addEventListener('load', function() {
+            clearTimeout(loadTimeout);
+        });
+
+        iframe.addEventListener('error', function() {
+            clearTimeout(loadTimeout);
+            iframe.style.display = 'none';
+            placeholder.style.display = 'flex';
+        });
+    }
+});</script>

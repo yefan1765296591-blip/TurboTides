@@ -1,0 +1,208 @@
+<section class="testimonials testimonials-single" id="testimonials">
+    {{/* 标题 */}}
+    {{ $raw := .Get "title" | default "What Others Are Saying" }}
+    {{ $title := (replaceRE `\b(Others)\b` "<span class='w-first'>$1</span>" $raw) | safeHTML }}
+
+    <div class="ts-inner">
+        <h2 class="ts-heading"><a href="/testimonials/" class="ts-heading-link">{{ $title }}</a></h2>
+        <div class="ts-line" aria-hidden="true"></div>
+
+        {{/* 收集内联行 */}}
+        {{ $lines := slice }}
+        {{ with .Inner }}
+        {{ range (split (. | chomp) "\n") }}
+        {{ $l := trim . " \t\r" }}
+        {{ if gt (len $l) 0 }}{{ $lines = $lines | append $l }}{{ end }}
+        {{ end }}
+        {{ end }}
+
+        {{/* 构造 items：优先内联，其次 data，最后默认 */}}
+        {{ $items := slice }}
+        {{ if gt (len $lines) 0 }}
+        {{ range $lines }}
+        {{ $parts := split . "|" }}
+        {{ $q := (index $parts 0 | trim " ") }}
+        {{ $a := cond (ge (len $parts) 2) (index $parts 1 | trim " ") "" }}
+        {{ $lg := cond (ge (len $parts) 3) (index $parts 2 | trim " ") "" }}
+        {{ $items = $items | append (dict "quote" $q "author" $a "logo" $lg) }}
+        {{ end }}
+        {{ else }}
+        {{ with site.Data.testimonials.items }}{{ $items = . }}{{ end }}
+        {{ end }}
+
+        {{ if eq (len $items) 0 }}
+        {{
+ $items = slice
+        (dict "quote" "TurboTides dramatically shortened our design iteration time." "author" "Senior Engineer, Aerospace")
+        (dict "quote" "Integrated workflow reduced cross-discipline friction." "author" "R&D Manager, Energy")
+        (dict "quote" "Optimization module revealed a configuration we hadn’t considered." "author" "Lead Designer, Machinery")
+        }}
+        {{ end }}
+
+        {{/* logos 参数 */}}
+        {{ $logos := slice }}
+        {{ with .Get "logos" }}
+        {{ range (split . ",") }}
+        {{ $logos = $logos | append (trim . " ") }}
+        {{ end }}
+        {{ end }}
+
+        {{/* 可临时打开调试（调试完删除）： */}}
+        <!-- DEBUG testimonials: items={{ len $items }} first={{ with index $items 0 }}{{ htmlEscape (index . "quote") }}{{ end }} pageIsHome={{ .Page.IsHome }} -->
+
+        <div class="ts-carousel" data-interval="{{ .Get "interval" | default "5500" }}" data-autoplay="true">
+            <div class="ts-track">
+                {{ range $i, $it := $items }}
+                {{ $logoFromParam := cond (and (gt (len $logos) $i) (ne (index $logos $i) "")) (index $logos $i) "" }}
+                {{ $finalLogo := cond (ne $logoFromParam "") $logoFromParam (or (index $it "logo") "") }}
+                {{ $qval := (or (index $it "quote") "") }}
+                {{ $aval := (or (index $it "author") "") }}
+
+                <div class="ts-slide" data-origin-index="{{ $i }}">
+                    <div class="ts-card">
+                        {{ if $finalLogo }}
+                        <div class="ts-logo-wrap">
+                            <img src="/img/home/{{ $finalLogo }}" alt="Logo {{ add $i 1 }}" loading="lazy" decoding="async">
+                        </div>
+                        {{ end }}
+
+                        {{ if gt (len (trim $qval " \t\r\n")) 0 }}
+                        <p class="ts-quote"><span class="ts-qtext">{{ $qval | replaceRE "\r?\n\r?\n" "<br><br>" | safeHTML }}</span></p>
+                        {{ end }}
+
+                        {{ if gt (len (trim $aval " \t\r\n")) 0 }}
+                        <p class="ts-author">{{ $aval }}</p>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+            <div class="ts-dots" role="tablist" aria-label="Testimonials navigation"></div>
+        </div>
+
+        <div class="ts-actions">
+            <a href="/testimonials/" class="btn-cta ts-more" aria-label="Continue reading testimonials">CONTINUE READING</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const shell = document.querySelector('.testimonials-single .ts-carousel');
+        if (!shell) return;
+        const track = shell.querySelector('.ts-track');
+        let slides = Array.from(track.children);
+        if (!slides.length) return;
+
+        if (slides.length > 1) {
+            const f = slides[0].cloneNode(true); f.classList.add('clone');
+            const l = slides[slides.length - 1].cloneNode(true); l.classList.add('clone');
+            track.insertBefore(l, slides[0]);
+            track.appendChild(f);
+            slides = Array.from(track.children);
+        }
+
+        const realCount = slides.length > 2 ? slides.length - 2 : slides.length;
+        const dotsWrap = shell.querySelector('.ts-dots');
+        for (let i = 0; i < realCount; i++) {
+            const b = document.createElement('button');
+            b.type = 'button'; b.className = 'ts-dot'; b.dataset.to = i;
+            b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dotsWrap.appendChild(b);
+        }
+        const dots = Array.from(dotsWrap.children);
+        let index = slides.length > 2 ? 1 : 0;
+        let width = shell.clientWidth;
+        let lastCommitted = -width * index;
+        let isDragging = false, startX = 0, currentX = 0, translateX = lastCommitted;
+        let paused = false;
+        const interval = parseInt(shell.dataset.interval, 10) || 5500;
+        const auto = shell.dataset.autoplay === 'true';
+        let timer = null;
+
+        function setT(x, tr = true) { track.style.transition = tr ? 'transform .55s ease' : 'none'; track.style.transform = `translate3d(${x}px,0,0)`; }
+        function realIdx() { if (slides.length <= 2) return index; if (index === 0) return slides.length - 2; if (index === slides.length - 1) return 1; return index; }
+        function updateDots() { const r = realIdx(); const disp = slides.length > 2 ? r - 1 : r; dots.forEach((d, i) => d.classList.toggle('active', i === disp)); }
+        function snap() { lastCommitted = -width * index; setT(lastCommitted, true); updateDots(); }
+        function next() { index++; snap(); }
+        function prev() { index--; snap(); }
+        function loopFix() {
+            if (slides.length <= 2) return;
+            if (slides[index].classList.contains('clone')) {
+                track.style.transition = 'none';
+                if (index === slides.length - 1) index = 1;
+                else if (index === 0) index = slides.length - 2;
+                lastCommitted = -width * index;
+                requestAnimationFrame(() => setT(lastCommitted, false));
+                updateDots();
+            }
+        }
+        function play() { if (!auto || paused || slides.length < 2) return; clearTimeout(timer); timer = setTimeout(() => { next(); play(); }, interval); }
+        function pause() { paused = true; clearTimeout(timer); }
+        function resume() { paused = false; play(); }
+        function resize() { width = shell.clientWidth; lastCommitted = -width * index; setT(lastCommitted, false); }
+
+        function pointerDown(e) {
+            if (slides.length < 2) return;
+            pause(); isDragging = true;
+            startX = e.touches ? e.touches[0].clientX : e.clientX;
+            currentX = startX; translateX = lastCommitted;
+            track.style.transition = 'none';
+            shell.classList.add('dragging');
+        }
+        function wrapDrag(raw) {
+            if (slides.length <= 2) return;
+            const minT = -width * (slides.length - 1), maxT = 0;
+            if (translateX > maxT + 60) {
+                index = slides.length - 2; lastCommitted = -width * index;
+                translateX = lastCommitted + (raw - startX); startX = raw;
+            } else if (translateX < minT - 60) {
+                index = 1; lastCommitted = -width * index;
+                translateX = lastCommitted + (raw - startX); startX = raw;
+            }
+        }
+        function pointerMove(e) {
+            if (!isDragging) return;
+            currentX = e.touches ? e.touches[0].clientX : e.clientX;
+            translateX = lastCommitted + (currentX - startX);
+            wrapDrag(currentX);
+            setT(translateX, false);
+        }
+        function pointerUp() {
+            if (!isDragging) return;
+            isDragging = false; shell.classList.remove('dragging');
+            const delta = currentX - startX;
+            const threshold = Math.min(width * 0.18, 110);
+            if (delta < -threshold) next();
+            else if (delta > threshold) prev();
+            else snap();
+            resume();
+        }
+
+        dots.forEach(d => {
+            d.addEventListener('click', () => {
+                pause();
+                const to = parseInt(d.dataset.to, 10);
+                index = slides.length > 2 ? to + 1 : to;
+                snap(); resume();
+            });
+        });
+
+        track.addEventListener('transitionend', loopFix);
+        shell.addEventListener('mousedown', pointerDown);
+        window.addEventListener('mousemove', pointerMove);
+        window.addEventListener('mouseup', pointerUp);
+        shell.addEventListener('touchstart', pointerDown, { passive: true });
+        shell.addEventListener('touchmove', pointerMove, { passive: true });
+        shell.addEventListener('touchend', pointerUp);
+        shell.addEventListener('mouseenter', pause);
+        shell.addEventListener('mouseleave', resume);
+        document.addEventListener('visibilitychange', () => document.hidden ? pause() : resume());
+        window.addEventListener('resize', resize);
+        track.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+
+        setT(-width * index, false);
+        updateDots();
+        play();
+    });
+</script>

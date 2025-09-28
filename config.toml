@@ -1,0 +1,140 @@
+baseURL = "https://www.turbotides.com"
+canonifyURLs = false
+title = "TURBOTIDES"
+author = "Taize Technology"
+languageCode = "en"
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+theme = "tella"
+enableRobotsTXT = true
+
+
+# Please enable this feature if the site is available in Japanese, Chinese or Korean.
+#hasCJKLanguage = true
+
+# If you're using Google Analytics, you can enable this feature.
+#googleAnalytics = "UA-12345678-1"
+
+# Disqus Comment System
+#disqusShortname = ""
+
+# Allow rendering of raw HTML in Markdown files
+[markup]
+  goldmark = { renderer = { unsafe = true } }
+
+
+[params]
+  showBlog = true
+  mainSections = ['blog']
+  googleFonts = true
+
+  [params.logo]
+    main = "img/logo/logo.svg"
+    alt = "TurboTides Logo"
+
+    # The size parameter is the class name of tailwindcss
+    # https://tailwindcss.com/
+    size = "h-10"
+
+  [params.site]
+    name = "TURBOTIDES"
+
+  [params.icon]
+    #If you want to use FontAwesome, set this parameter to true.
+    fontawesome = true
+    material = true
+
+  [params.homepage_meta_tags]
+    meta_description = "TurboTides - Professional CAE industrial software solution to assist enterprises in efficient simulation and optimization design"
+    meta_og_title = "TurboTides"
+    meta_og_type = "website"
+    meta_og_url = "https://fanxgg.github.io/TurboTides"
+    meta_og_image = "https://github.com/fanxgg/TurboTides/tree/main/img/tn.png"
+    meta_og_description = "TurboTides provides efficient CAE simulation and optimization software to help enterprises improve design efficiency"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "HOME"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "software"
+    name = "SOFTWARE"
+    url = "/software/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "services"
+    name = "SERVICES"
+    url = "/services/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "testimonials"
+    name = "TESTIMONIALS"
+    url = "/testimonials/"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "blog"
+    name = "BLOGS/CASE STUDIES"
+    url = ""
+    weight = 5
+
+  [[menu.main]]
+    identifier = "news"
+    parent = "blog"
+    name = "News"
+    url = "/blog/news/"
+    weight = 51
+
+  [[menu.main]]
+    identifier = "software-cases"
+    parent = "blog"
+    name = "Software Cases"
+    url = "/blog/softwarecases/"
+    weight = 52
+
+  [[menu.main]]
+    identifier = "other-software"
+    name = "OTHER SOFTWARE"
+    url = ""
+    weight = 6
+
+  [[menu.main]]
+    identifier = "products"
+    parent = "other-software"
+    name = "Products"
+    url = "/other-software/products/"
+    weight = 61
+
+  [[menu.main]]
+    identifier = "other-cases"
+    parent = "other-software"
+    name = "Other Cases"
+    url = "/other-software/cases/"
+    weight = 62
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "CONTACT US"
+    url = "/contact/"
+    weight = 7
+
+  # Footer Menu
+  [[menu.footer]]
+    name = "Home"
+    url = "/"
+      weight = 1
+
+  [[menu.footer]]
+    name = "Return"
+    url = "/"
+    pre = "<i class='fas fa-home text-2xl'></i>"
+      weight = 2

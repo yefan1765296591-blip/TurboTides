@@ -1,0 +1,15 @@
+{{ define "main" }}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('home-transparent');
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 40) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
+    });
+</script>
+{{ .Content }}
+{{ end }}

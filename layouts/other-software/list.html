@@ -1,0 +1,98 @@
+﻿{{ define "meta_tags" }}
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="{{ .Title }}">
+
+{{ if .Params.image }}
+{{ with .Params.image }}
+<meta property="og:image" content="{{ . | absURL }}">
+{{ end }}
+{{ else }}
+<meta property="og:image" content="{{ .Site.Params.homepage_meta_tags.meta_og_image | absURL }}">
+{{ end }}
+
+{{- if .Description }}
+<meta name="description" content="{{ .Description }}" />
+<meta property="og:description" content="{{ .Description }}" />
+<meta property="twitter:description" content="{{ .Description }}" />
+{{- else if .Summary }}
+<meta name="description" content="{{ .Summary }}" />
+<meta property="og:description" content="{{ .Summary }}" />
+<meta property="twitter:description" content="{{ .Summary }}" />
+{{- else if .Site.Params.description }}
+<meta name="description" content="{{ .Site.Params.description }}" />
+<meta property="og:description" content="{{ .Site.Params.description }}" />
+<meta property="twitter:description" content="{{ .Site.Params.description }}" />
+{{- end }}
+{{ end }}
+
+{{ define "main" }}
+<section class="common-page">
+    <div class="common-page-wrap">
+        {{ if hasPrefix .RelPermalink "/other-software/products/" }}
+        <h1 class="common-page-title" data-ani="fade-up">Products</h1>
+        <p class="common-page-description" data-ani="fade-up">Discover our comprehensive suite of innovative software products and cutting-edge solutions.</p>
+        {{ else if hasPrefix .RelPermalink "/other-software/cases/" }}
+        <h1 class="common-page-title" data-ani="fade-up">Other Cases</h1>
+        <p class="common-page-description" data-ani="fade-up">Explore real-world case studies showcasing the practical applications of our diverse software solutions.</p>
+        {{ else }}
+        <h1 class="common-page-title" data-ani="fade-up">{{.Title}}</h1>
+        <p class="common-page-description" data-ani="fade-up">{{.Description}}</p>
+        {{ end }}
+
+        <div class="common-page-content">
+            <div class="content py-1">{{.Content}}</div>
+
+            {{ $paginator := .Paginate (where .Data.Pages "Type" "in" site.Params.mainSections) 6 }}
+            {{ if $paginator.Pages }}
+            <div class="items-grid">
+                {{ range $paginator.Pages }}
+                <a href="{{ .Permalink }}">
+                    {{ partial "summary.html" . }}
+                </a>
+                {{ end }}
+            </div>
+            {{ else }}
+            <div class="empty-state">
+                <div class="icon">🚀</div>
+                {{ if hasPrefix .RelPermalink "/other-software/products/" }}
+                <h3>Products Coming Soon</h3>
+                <p>We're actively developing innovative software products and will launch them soon. Stay tuned for exciting updates and cutting-edge solutions!</p>
+                {{ else if hasPrefix .RelPermalink "/other-software/cases/" }}
+                <h3>Case Studies in Development</h3>
+                <p>We're preparing comprehensive case studies to showcase real-world applications of our software solutions. Please check back soon for detailed insights.</p>
+                {{ else }}
+                <h3>Content Coming Soon</h3>
+                <p>We're working hard to bring you valuable content. Please check back later for updates.</p>
+                {{ end }}
+            </div>
+            {{ end }}
+
+            {{ if gt .Paginator.TotalPages 1 }}
+            {{ partial "paginator.html" . }}
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<script>document.addEventListener('DOMContentLoaded', function() {
+    // 添加动画效果
+    setTimeout(function() {
+        const title = document.querySelector('.common-page-title');
+        if (title) title.classList.add('animate-in');
+    }, 100);
+
+    setTimeout(function() {
+        const desc = document.querySelector('.common-page-description');
+        if (desc) desc.classList.add('animate-in');
+    }, 300);
+
+    setTimeout(function() {
+        const content = document.querySelector('.common-page-content');
+        if (content) content.classList.add('animate-in');
+    }, 500);
+});</script>
+{{ end }}

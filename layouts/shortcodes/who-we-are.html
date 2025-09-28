@@ -1,0 +1,199 @@
+﻿<section class="block-section who-we-are">
+    <div class="bs-inner ww-layout">
+        <div class="ww-text">
+            {{ $rawTitle := .Get "title" | default "Who We Are?" }}
+            {{ $title := $rawTitle | safeHTML }}
+            {{ if not (findRE `<span[^>]+w-first` $rawTitle) }}
+            {{ $title = (replaceRE `^([Ww]ho)\b` "<span class='w-first'>$1</span>" $rawTitle) | safeHTML }}
+            {{ end }}
+            <h2>{{ $title }}</h2>
+
+            {{ $textParam := .Get "text" }}
+            {{ if $textParam }}
+            <div class="bs-text">{{ $textParam | safeHTML }}</div>
+            {{ else if .Inner }}
+            <div class="bs-text">{{ .Inner | markdownify }}</div>
+            {{ end }}
+
+            {{ if .Get "ctaText" }}
+            <a href="{{ .Get "ctaLink" }}" class="btn-cta link-inline">{{ .Get "ctaText" }}</a>
+            {{ end }}
+        </div>
+
+        <div class="ww-media">
+            <div class="ww-carousel" data-interval="{{ .Get "interval" | default "4000" }}" data-autoplay="true">
+                <div class="ww-track">
+                    {{ $imgsParam := .Get "images" }}
+                    {{ $imgs := slice }}
+                    {{ if $imgsParam }}
+                    {{ range (split $imgsParam ",") }}{{ $imgs = $imgs | append (trim . " ") }}{{ end }}
+                    {{ else }}
+                    {{ range seq 1 9 }}{{ $imgs = $imgs | append (printf "WhoWeAre%d.png" .) }}{{ end }}
+                    {{ end }}
+                    {{ range $i, $img := $imgs }}
+                    <div class="ww-slide" data-origin-index="{{ $i }}">
+                        <img src="/img/home/{{ $img }}" alt="Who We Are {{ add $i 1 }}" loading="lazy" decoding="async" draggable="false" />
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const carousel = document.querySelector('.who-we-are .ww-carousel');
+        if (!carousel) return;
+        const track = carousel.querySelector('.ww-track');
+        let slides = Array.from(track.children);
+        if (slides.length < 2) return;
+
+        //   ¡  β
+        const firstClone = slides[0].cloneNode(true);
+        firstClone.classList.add('clone');
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+        lastClone.classList.add('clone');
+        track.insertBefore(lastClone, slides[0]);
+        track.appendChild(firstClone);
+        slides = Array.from(track.children);
+
+        let index = 1;
+        let width = carousel.clientWidth;
+        let interval = parseInt(carousel.dataset.interval, 10) || 4000;
+        let autoPlay = carousel.dataset.autoplay === 'true';
+        let timer = null;
+
+        let isDragging = false;
+        let paused = false;
+        let startX = 0;
+        let currentX = 0;
+        let translateX = 0;
+        let lastCommitted = -width * index;
+        let lockClick = false;
+
+        function setTransform(value, withTransition = true) {
+            track.style.transition = withTransition ? 'transform .55s ease' : 'none';
+            track.style.transform = `translate3d(${value}px,0,0)`;
+        }
+
+        function logicalSnap() {
+            lastCommitted = -width * index;
+            setTransform(lastCommitted, true);
+        }
+
+        function next() { if (index < slides.length - 1) { index++; logicalSnap(); } }
+        function prev() { if (index > 0) { index--; logicalSnap(); } }
+
+        function handleLoop() {
+            if (!slides[index]) return;
+            if (slides[index].classList.contains('clone')) {
+                track.style.transition = 'none';
+                if (index === slides.length - 1) { //   ĩβ  ¡ ->
+                    index = 1;
+                } else if (index === 0) { //     ͷ  ¡ ->   β
+                    index = slides.length - 2;
+                }
+                lastCommitted = -width * index;
+                requestAnimationFrame(() => setTransform(lastCommitted, false));
+            }
+        }
+
+        function play() {
+            if (!autoPlay || paused) return;
+            clearTimeout(timer);
+            timer = setTimeout(() => { next(); play(); }, interval);
+        }
+        function pause() { paused = true; clearTimeout(timer); }
+        function resume() { paused = false; play(); }
+
+        function resize() {
+            width = carousel.clientWidth;
+            lastCommitted = -width * index;
+            setTransform(lastCommitted, false);
+        }
+
+        //        ק ߼    ޷  wrap during drag
+        function pointerDown(e) {
+            const x = e.touches ? e.touches[0].clientX : e.clientX;
+            pause();
+            isDragging = true;
+            startX = x;
+            currentX = x;
+            translateX = lastCommitted;
+            track.style.transition = 'none';
+            carousel.classList.add('grabbing');
+        }
+
+        function wrapIfNeededDuringDrag(rawX) {
+            //    ϶ Խ      ¡  ˲ Ƶ   Ӧ  ʵβ
+            const minTranslateAllowed = -width * (slides.length - 1); //    ң     ¡
+            const maxTranslateAllowed = 0; //    󣨵 һ    ¡
+            if (translateX > maxTranslateAllowed - 10) { //
+                index = slides.length - 2; //   ʵβ
+                lastCommitted = -width * index;
+                translateX = lastCommitted + (rawX - startX);
+                startX = rawX; //        ʹ  ק
+            } else if (translateX < minTranslateAllowed + 10) { //      ұ
+                index = 1; //   ʵ
+                lastCommitted = -width * index;
+                translateX = lastCommitted + (rawX - startX);
+                startX = rawX;
+            }
+        }
+
+        function pointerMove(e) {
+            if (!isDragging) return;
+            const x = e.touches ? e.touches[0].clientX : e.clientX;
+            currentX = x;
+            const delta = currentX - startX;
+            translateX = lastCommitted + delta;
+            wrapIfNeededDuringDrag(currentX);
+            setTransform(translateX, false);
+            if (Math.abs(delta) > 5) lockClick = true;
+        }
+
+        function pointerUp() {
+            if (!isDragging) return;
+            isDragging = false;
+            carousel.classList.remove('grabbing');
+            const delta = currentX - startX;
+            const threshold = Math.min(width * 0.2, 120);
+            if (delta < -threshold) {
+                index++;
+            } else if (delta > threshold) {
+                index--;
+            }
+            logicalSnap();
+            lastCommitted = -width * index;
+            lockClick = false;
+            resume();
+        }
+
+        //   Ĭ   drag
+        track.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+
+        //  ¼
+        track.addEventListener('transitionend', handleLoop);
+        carousel.addEventListener('mousedown', pointerDown);
+        window.addEventListener('mousemove', pointerMove);
+        window.addEventListener('mouseup', pointerUp);
+
+        carousel.addEventListener('touchstart', pointerDown, { passive: true });
+        carousel.addEventListener('touchmove', pointerMove, { passive: true });
+        carousel.addEventListener('touchend', pointerUp);
+
+        carousel.addEventListener('mouseenter', pause);
+        carousel.addEventListener('mouseleave', resume);
+        carousel.addEventListener('focusin', pause);
+        carousel.addEventListener('focusout', resume);
+        document.addEventListener('visibilitychange', () => document.hidden ? pause() : resume());
+        window.addEventListener('resize', resize);
+
+        //   ʼ
+        setTransform(-width * index, false);
+        play();
+    });
+</script>

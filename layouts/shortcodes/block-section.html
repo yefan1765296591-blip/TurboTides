@@ -1,0 +1,14 @@
+<section class="block-section {{ if or (.Get "noBg") (eq (.Get "variant") "plain") }}no-bg{{ end }}">
+    <div class="bs-inner">
+        <h2>{{ .Get "title" | safeHTML }}</h2>
+        {{ $raw := .Get "text" }}
+        {{ if $raw }}
+        <p class="bs-text">{{ $raw | safeHTML }}</p>
+        {{ else }}
+        <div class="bs-text">{{ .Inner | markdownify }}</div>
+        {{ end }}
+        {{ if .Get "ctaText" }}
+        <a href="{{ .Get "ctaLink" }}" class="btn-cta link-inline">{{ .Get "ctaText" }}</a>
+        {{ end }}
+    </div>
+</section>

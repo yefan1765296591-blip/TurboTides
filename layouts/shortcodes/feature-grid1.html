@@ -1,0 +1,19 @@
+<div class="features-grid1">
+    {{ $items := .Site.Data.feature_grid1 }}
+    {{ if not $items }}
+    {{ $items = index .Site.Data "feature-grid1" }}
+    {{ end }}
+    {{ range $items }}
+    <a href="{{ .doc_url }}" class="feature-card">
+        <div class="feature-content">
+            {{ if .icon_img }}
+            <img src="{{ .icon_img }}" alt="{{ .title }} icon" class="feature-icon">
+            {{ else if .icon }}
+            <span class="material-icons">{{ .icon }}</span>
+            {{ end }}
+            <h3 class="feature-title">{{ .title }}</h3>
+            <p class="feature-description">{{ .description }}</p>
+        </div>
+    </a>
+    {{ end }}
+</div>

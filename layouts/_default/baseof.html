@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{ or .Site.Language.Lang "ja" }}">
+
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-07EBEJK6JD"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-07EBEJK6JD');</script>
+
+    {{- partial "head.html" . -}}
+    {{ block "meta_tags" . }}{{end}}
+
+    {{/* 主页专用样式 home.css，首次添加时不做 bundle */}}
+    {{ if .IsHome }}
+    {{ $home := resources.Get "css/home.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $home.RelPermalink }}" integrity="{{ $home.Data.Integrity }}">
+    {{ end }}
+
+    {{/* Software 页面专用样式 */}}
+    {{ if or (eq .Section "software") (eq .Type "software") }}
+    {{ with resources.Get "css/software.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+    {{ end }}
+    {{ end }}
+
+    {{/* Services 与 Contact 复用同一标题样式 */}}
+    {{ if or (in (slice "services" "contact") .Section) (in (slice "services" "contact") .Type) }}
+    {{ with resources.Get "css/services.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+    {{ end }}
+    {{ end }}
+
+    {{/* Testimonials 页面专用样式 */}}
+    {{ if or (eq .Section "testimonials") (eq .Type "testimonials") }}
+    {{ with resources.Get "css/testimonials.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+    {{ end }}
+    {{ end }}
+
+    {{/* 通用页面标题样式 - 只为需要的页面加载，排除contact类型 */}}
+    {{ $needsCommonPageStyles := or (and (eq .Section "blog") (or (eq .Type "softwarecases") (eq .Type "news"))) (eq .Section "other-software") }}
+    {{ if $needsCommonPageStyles }}
+    {{ with resources.Get "css/page-common.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+    {{ end }}
+    {{ end }}
+
+    {{/* News 和 Software Cases页面专用样式 - 需要在 page-common.css 之后加载 */}}
+    {{ $isNewsOrCases := or .Params.is_news_page (hasPrefix .RelPermalink "/blog/news/") (hasPrefix .RelPermalink "/blog/softwarecases/") }}
+    {{ if $isNewsOrCases }}
+    {{ with resources.Get "css/news.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+    {{ end }}
+    {{ end }}
+
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <main class="flex-grow">
+        {{- partial "header.html" . -}}
+        <div class="scroll-top rounded-full">
+            <span class="icon-keyboard_arrow_up text-2xl"></span>
+        </div>
+        {{- block "main" . }}{{- end }}
+    </main>
+    {{- partial "footer.html" . -}}
+</body>
+
+</html>

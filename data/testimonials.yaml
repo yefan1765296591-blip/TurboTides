@@ -1,0 +1,15 @@
+﻿items:
+  - quote: |-
+      TurboTides may be a newer player in the turbomachinery CAE software market, but its highly integrated system provides high efficiency. It is easy to use, yet has powerful tools for all types of turbomachinery design needs.
+
+      We are impressed by this product and would like to recommend it to benefit the whole turbomachinery community.
+    author: "Shuo Li, Ph.D. Bloom Energy"
+    logo: "Logo1.png"
+
+  - quote: "Turbo Tides is a customer centric oriented company that offers a design code that can handle all centrifugal pump designs, including very low Ns designs. The technical support that TurboTides provides is not just for the software but includes technical support in the event a customer has difficulties with a particular design. TurboTides essentially partners with their customers to ensure their success."
+    author: "George J. Maddox, BSME, MBA, PE. Best PumpWorks"
+    logo: "Logo2.png"
+
+  - quote: "TurboTides has an excellent technical support staff that will respond very quickly to answer any questions, resolve issues, or give guidance in the use of the software. In my opinion anyone that is serious about designing turbomachinery should give TurboTides a try. I think they will be pleasantly surprised."
+    author: "Donovan Thompson, BSME Yumac Products, LLC"
+    logo: "Logo3.png"

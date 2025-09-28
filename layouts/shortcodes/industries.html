@@ -1,0 +1,38 @@
+<section class="block-section industries-section">
+    <div class="ind-inner">
+        <div class="ind-left">
+            {{ $rawTitle := .Get "title" | default "Industries We Serve" }}
+            {{ $title := $rawTitle | safeHTML }}
+            {{ if not (findRE `<span[^>]+w-first` $rawTitle) }}
+            {{ $title = (replaceRE `^([Ii]ndustries)\b` "<span class='w-first'>$1</span>" $rawTitle) | safeHTML }}
+            {{ end }}
+            <h2 data-ani="fade-up" data-split="chars">{{ $title }}</h2>
+
+            {{ $sub := .Get "sub" | default "The flexibility and power of TurboTides' software makes it ideal for a broad range of industries and applications." }}
+            <p class="ind-sub" data-ani="fade-up">{{ $sub | safeHTML }}</p>
+
+            <a href="{{ .Get "ctaLink" | default "/services/" }}" class="btn-cta ind-btn" data-ani="fade-up">
+                {{ .Get "ctaText" | default "ALSO VIEW OUR ENGINEERING SERVICES" }}
+            </a>
+        </div>
+
+        <div class="ind-right">
+            <ul class="ind-col">
+                <li data-ani="fade-up" class="ani-delay-1">Centrifugal, mixed-flow and axial compressors</li>
+                <li data-ani="fade-up" class="ani-delay-2">Radial-inflow and axial turbines</li>
+                <li data-ani="fade-up" class="ani-delay-3">Centrifugal, mixed-flow and axial pumps</li>
+                <li data-ani="fade-up" class="ani-delay-4">Centrifugal, mixed-flow and axial fans</li>
+            </ul>
+            <ul class="ind-col">
+                <li data-ani="fade-up" class="ani-delay-1">Aerospace</li>
+                <li data-ani="fade-up" class="ani-delay-2">Oil &amp; gas processing</li>
+                <li data-ani="fade-up" class="ani-delay-3">Air separation</li>
+                <li data-ani="fade-up" class="ani-delay-4">Power generation</li>
+                <li data-ani="fade-up" class="ani-delay-5">Refrigeration compressors</li>
+                <li data-ani="fade-up" class="ani-delay-6">Automotive &amp; train turbocharger</li>
+                <li data-ani="fade-up" class="ani-delay-1">Waste energy recovery</li>
+                <li data-ani="fade-up" class="ani-delay-2">Fuel cell</li>
+            </ul>
+        </div>
+    </div>
+</section>

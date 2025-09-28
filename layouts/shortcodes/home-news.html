@@ -1,0 +1,13 @@
+<section class="news-strip">
+    <div class="news-container">
+        {{ $page := .Page }}
+        {{ with $page.Params.news }}
+        {{ range . }}
+        <a class="news-pill" href="{{ .link }}">{{ .title }}</a>
+        {{ end }}
+        {{ else }}
+        <a class="news-pill" href="/services/">Service Update</a>
+        <a class="news-pill" href="/other-software/products/">New Release</a>
+        {{ end }}
+    </div>
+</section>

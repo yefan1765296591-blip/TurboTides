@@ -1,0 +1,111 @@
+{{ define "main" }}
+<section class="testimonials-page">
+    <div class="testim-wrap">
+        <h1 class="t-page-title" data-ani="fade-up" data-split="chars">{{ .Title }}</h1>
+
+        {{ $items := .Params.testimonials }}
+        {{ if not $items }}
+        <p data-ani="fade-up">No testimonials configured yet.</p>
+        {{ else }}
+        {{ range $i, $t := $items }}
+        {{ $inverse := cond (eq (mod $i 2) 1) "inverse" "" }}
+        <div class="tb-item {{ $inverse }}" data-testimonial-index="{{ $i }}">
+            <div class="tb-logo" data-animation="slide-from-right">
+                <div class="tb-logo-inner">
+                    <img src="{{ $t.logo | safeURL }}" alt="{{ printf "%s Logo" ($t.company | default "Client") }}">
+                </div>
+            </div>
+            <div class="tb-text" data-animation="slide-from-bottom">
+                <blockquote class="tb-quote">
+                    <span class="tb-qmark tb-qmark-left">&ldquo;</span>
+                    <div class="tb-qtext">
+                        {{ $quote := $t.quote }}
+                        {{ $paragraphs := split $quote "\n\n" }}
+                        {{ if eq (len $paragraphs) 1 }}
+                        <!-- 如果没有明确的段落分隔，尝试按句号+空格分段 -->
+                        {{ $sentences := split $quote ". " }}
+                        {{ if gt (len $sentences) 3 }}
+                        {{ $midPoint := div (len $sentences) 2 }}
+                        <p>{{ delimit (first $midPoint $sentences) ". " }}.</p>
+                        <p>{{ delimit (after $midPoint $sentences) ". " }}</p>
+                        {{ else }}
+                        <p>{{ $quote }}</p>
+                        {{ end }}
+                        {{ else }}
+                        {{ range $paragraphs }}
+                        {{ if . }}
+                        <p>{{ . | markdownify | safeHTML }}</p>
+                        {{ end }}
+                        {{ end }}
+                        {{ end }}
+                    </div>
+                    <span class="tb-qmark tb-qmark-right">&rdquo;</span>
+                </blockquote>
+                <div class="tb-author">
+                    {{ $company := split $t.company "  " }}
+                    {{ if gt (len $company) 1 }}
+                    <p class="tb-name">{{ index $company 0 }}</p>
+                    <p class="tb-company-name">{{ index $company 1 }}</p>
+                    {{ else }}
+                    <p class="tb-company-name">{{ $t.company }}</p>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
+        {{ end }}
+    </div>
+</section>
+
+<script>// Testimonials 页面动画控制
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -100px 0px',
+        threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const item = entry.target;
+                const index = parseInt(item.dataset.testimonialIndex);
+
+                // 为整个项目添加动画类
+                setTimeout(() => {
+                    item.classList.add('animate-in');
+                }, index * 200);
+
+                // Logo 动画（从右侧滑入）
+                const logo = item.querySelector('.tb-logo');
+                setTimeout(() => {
+                    logo.classList.add('animate-in');
+                }, index * 200 + 100);
+
+                // 文本动画（从底部滑入）
+                const text = item.querySelector('.tb-text');
+                setTimeout(() => {
+                    text.classList.add('animate-in');
+                }, index * 200 + 300);
+
+                observer.unobserve(item);
+            }
+        });
+    }, observerOptions);
+
+    // 观察所有 testimonial 项目
+    const testimonialItems = document.querySelectorAll('.tb-item');
+    testimonialItems.forEach(item => {
+        observer.observe(item);
+    });
+
+    // 页面标题动画
+    const title = document.querySelector('.t-page-title');
+    if (title) {
+        setTimeout(() => {
+            title.style.opacity = '1';
+            title.style.transform = 'translateY(0)';
+        }, 200);
+    }
+});</script>
+{{ end }}

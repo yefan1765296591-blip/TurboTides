@@ -1,0 +1,101 @@
+{{ define "main" }}
+<section class="services-page">
+    <div class="services-wrap">
+        <h1 class="s-page-title" data-ani="fade-up">{{ .Title }}</h1>
+        <p class="s-page-description" data-ani="fade-up">{{ .Description }}</p>
+
+        {{ $items := .Params.services }}
+        {{ if not $items }}
+        <p data-ani="fade-up">No services configured yet.</p>
+        {{ else }}
+        <div class="services-grid">
+            {{ range $i, $service := $items }}
+            <div class="service-item" data-service-index="{{ $i }}">
+                <div class="service-icon" data-animation="slide-from-left">
+                    {{ if $service.icon }}
+                    <img src="{{ $service.icon | safeURL }}" alt="{{ $service.title }} Icon">
+                    {{ else }}
+                    <div class="service-icon-placeholder">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    {{ end }}
+                </div>
+                <div class="service-content" data-animation="slide-from-right">
+                    <h3 class="service-title">{{ $service.title }}</h3>
+                    <p class="service-description">{{ $service.description }}</p>
+                    {{ if $service.features }}
+                    <ul class="service-features">
+                        {{ range $service.features }}
+                        <li>{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<script>// Services页面动画效果
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -80px 0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const item = entry.target;
+                const index = parseInt(item.dataset.serviceIndex);
+
+                // 为每个服务项添加动画
+                setTimeout(() => {
+                    item.classList.add('animate-in');
+                }, index * 150);
+
+                // 图标动画（从左侧滑入）
+                const icon = item.querySelector('.service-icon');
+                setTimeout(() => {
+                    icon.classList.add('animate-in');
+                }, index * 150 + 100);
+
+                // 内容动画（从右侧滑入）
+                const content = item.querySelector('.service-content');
+                setTimeout(() => {
+                    content.classList.add('animate-in');
+                }, index * 150 + 250);
+
+                observer.unobserve(item);
+            }
+        });
+    }, observerOptions);
+
+    // 观察所有 service 项目
+    const serviceItems = document.querySelectorAll('.service-item');
+    serviceItems.forEach(item => {
+        observer.observe(item);
+    });
+
+    // 页面标题动画
+    const title = document.querySelector('.s-page-title');
+    const description = document.querySelector('.s-page-description');
+
+    if (title) {
+        setTimeout(() => {
+            title.style.opacity = '1';
+            title.style.transform = 'translateY(0)';
+        }, 200);
+    }
+
+    if (description) {
+        setTimeout(() => {
+            description.style.opacity = '1';
+            description.style.transform = 'translateY(0)';
+        }, 400);
+    }
+});</script>
+{{ end }}

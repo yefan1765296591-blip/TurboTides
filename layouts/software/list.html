@@ -1,0 +1,513 @@
+﻿{{ define "main" }}
+<section class="software-page">
+    <div class="software-wrap">
+        <h1 class="s-page-title">{{ .Title }}</h1>
+
+        <div class="software-container">
+            <!-- 左侧导航 -->
+            <div class="software-nav">
+                <!-- Overview Section -->
+                <div class="nav-section">
+                    <button class="nav-section-header" data-section="overview">
+                        <span class="nav-title">Overview</span>
+                        <span class="nav-arrow">▼</span>
+                    </button>
+                    <div class="nav-content expanded" data-content="overview">
+                        <a href="#" class="nav-item active" data-tab="design-integration">Integrated All-in-One Forward Design System</a>
+                        <a href="#" class="nav-item" data-tab="process-standardization">Unique Model Calibration Technology</a>
+                        <a href="#" class="nav-item" data-tab="optimization">Parameterized CAD Import</a>
+                        <a href="#" class="nav-item" data-tab="knowledge-preservation">Automated Meshing & Analysis </a>
+                        <a href="#" class="nav-item" data-tab="database-management">Intelligent Design Database</a>
+                        <a href="#" class="nav-item" data-tab="workflow-automation">Integrated System Optimization</a>
+                    </div>
+                </div>
+
+                <!-- Functional Modules Section -->
+                <div class="nav-section">
+                    <button class="nav-section-header" data-section="modules">
+                        <span class="nav-title">Functional Modules</span>
+                        <span class="nav-arrow">▶</span>
+                    </button>
+                    <div class="nav-content" data-content="modules">
+                        <a href="#" class="nav-item" data-tab="cycle-analysis">Cycle Modeling & Analysis</a>
+                        <a href="#" class="nav-item" data-tab="meanline-design">1D Meanline Design and Analysis</a>
+                        <a href="#" class="nav-item" data-tab="throughflow-analysis">2D Through-flow Analysis</a>
+                        <a href="#" class="nav-item" data-tab="geometry-modeler">Geometric Modeling</a>
+                        <a href="#" class="nav-item" data-tab="cfd-analysis">3D CFD Flow Field Simulation</a>
+                        <a href="#" class="nav-item" data-tab="fea-analysis">3D FEA Finite Element</a>
+                        <a href="#" class="nav-item" data-tab="database-system">Embedded Database</a>
+                        <a href="#" class="nav-item" data-tab="optimization-engine">Optimization Design</a>
+                    </div>
+                </div>
+
+                <!-- Application Areas Section -->
+                <div class="nav-section">
+                    <button class="nav-section-header" data-section="applications">
+                        <span class="nav-title">Application Areas</span>
+                        <span class="nav-arrow">▶</span>
+                    </button>
+                    <div class="nav-content" data-content="applications">
+                        <a href="#" class="nav-item" data-tab="centrifugal-compressors">Compressor Design System</a>
+                        <a href="#" class="nav-item" data-tab="axial-turbines">Turbine Design System</a>
+                        <a href="#" class="nav-item" data-tab="pumps-fans">Pump Design System</a>
+                        <a href="#" class="nav-item" data-tab="mixed-flow-machines">Fan Design System</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧内容区域 -->
+            <div class="software-content">
+                <!-- Default Overview Content -->
+                <div class="content-panel active" id="content-design-integration">
+                    <h2>Integrated All-in-One Forward Design System</h2>
+                    <p>TurboTides is a highly integrated, all-in-one design system that incorporates all the necessary tools and modules for the entire turbomachinery design process. Data transfer between modules is fully automated and lossless, ensuring seamless connectivity across all design stages and significantly boosting the efficiency of the design process.</p>
+                    <img src="/img/products/turbotides/1.png" alt="Integrated All-in-One Design System Illustration" class="feature-image">
+                    <div class="turbo-images-row">
+                        <img src="/img/products/turbotides/Integrated.png" alt="Integrated">
+                        <img src="/img/products/turbotides/Specialized.png" alt="Specialized">
+                        <img src="/img/products/turbotides/Intelligent.png" alt="Intelligent">
+                        <img src="/img/products/turbotides/Customizable.png" alt="Customizable">
+                    </div>
+                </div>
+
+                <!-- Other content panels will be hidden initially -->
+                <div class="content-panel" id="content-process-standardization">
+                    <h2>Unique Model Calibration Technology</h2>
+                    <p>TurboTides features a proprietary Data Reduction technology that calibrates 1D models with high precision using experimental data or 3D CFD results. Based on these calibrated models, users can perform various scaling design operations, including geometric scaling, flow path adjustments, and working fluid substitution. This advanced scaling technology is crucial for rapid equipment selection, product series development, and accelerating design iterations.</p>
+                </div>
+
+                <div class="content-panel" id="content-optimization">
+                    <h2>Fully Parameterized Flow Path Import Function</h2>
+                    <p>TurboTides allows the import of 3D CAD models of blade flow paths and volutes into its geometry module. These models can be re-parameterized to extract key feature parameters. The resulting parameterized models can be adjusted via control points, providing a solid foundation for subsequent product optimization.</p>
+                </div>
+
+                <!-- Add more content panels as needed -->
+                <div class="content-panel" id="content-knowledge-preservation">
+                    <h2>Automated Meshing & Analysis</h2>
+                    <p>TurboTides provides mesh templates, boundary conditions, and load settings tailored to different types of turbomachinery. Users can generate meshes and perform high-precision CFD and FEA analyses in just a few simple steps, significantly lowering the technical barrier for advanced simulations and enhancing design iteration efficiency.</p>
+                </div>
+
+                <div class="content-panel" id="content-database-management">
+                    <h2>Intelligent Design Database</h2>
+                    <p>
+                        TurboTides allows users to conveniently import existing CAD models and reverse-generate 1D models. Through its Data Reduction function, existing performance data can be imported to create calibrated high-precision 1D models, forming the foundation for next-generation designs. All of this is supported by TurboTides' unique embedded database.
+                    </p>
+                    <p>
+                        The TurboTides database automatically accumulates design methodologies, design data, and design models, facilitating product series design and continuous optimization and improvement based on existing design models. The database supports both local and remote access, adapting flexibly to various user scenarios.
+                    </p>
+                </div>
+
+                <div class="content-panel" id="content-workflow-automation">
+                    <h2>Multi-Disciplinary, Multi-Objective, Multi-Scale Integrated Intelligent Optimization Design Technology</h2>
+                    <p>
+                        TurboTides integrates the fourth-generation, AI/ML-based OASIS optimization algorithm to accelerate the optimization process and enhance design quality. Users can invoke the optimizer across system, 1D, 2D, and 3D analysis modules to perform optimization at different fidelity levels.
+                    </p>
+                    <p>
+                        This covers multiple disciplines, including thermodynamics, aerodynamics, and structural mechanics, to achieve a truly integrated multi-disciplinary, multi-objective, and multi-scale design optimization.
+                    </p>
+                </div>
+
+                <!-- Functional Modules Content Panels -->
+                <div class="content-panel" id="content-cycle-analysis">
+                    <h2>Cycle Modeling & Analysis</h2>
+                    <p>TurboTides cycle analysis supports the design and analysis of thermodynamic cycles in various layout forms.</p>
+                    <ul class="standard-list">
+                        <li>Rankine cycle& Organic Rankine Cycle (ORC)</li>
+                        <li>Gas turbine cycle</li>
+                        <li>Supercritical CO2 cycle</li>
+                        <li>Refrigeration Cycle</li>
+                        <li>Turbocharging Matching</li>
+                        <li>Multi-stage compression system design and analysis, including gear-type multi-stage compression (IGC)</li>
+                    </ul>
+                    <ul class="checklist">
+                        <li>Supports power turbine model and turbojet engine model.</li>
+                        <li>Supports adding a secondary air system (SAS), modeling of turbine cooling and anti-surge flow path.</li>
+                        <li>Supports simulation of Printed Circuit Heat Exchangers (PCHE).</li>
+                        <li>Supports various options for compressor and turbine model types, such as one-dimensional mean-line models and characteristic maps.</li>
+                        <li>With embedded optimizer, automatic optimization of cycle parameters can be achieved.</li>
+                    </ul>
+                    <img src="/img/products/turbotides/2.png" alt="Cycle Diagram" class="feature-image">
+                    <img src="/img/products/turbotides/3.png" alt="Performance Map" class="feature-image">
+                </div>
+
+                <div class="content-panel" id="content-meanline-design">
+                    <h2>1D Meanline Design and Analysis</h2>
+                    <p>Supports preliminary design and analysis of radial, mixed-flow, and axial forms of compressors, turbines.</p>
+                    <ul class="checklist">
+                        <li>Rapid design of centrifugal, axial, and mixed-flow pumps, incorporating design experience from the pump industry.</li>
+                        <li>Supports the design and analysis of counter rotating axial flow compressors.</li>
+                        <li>Based on REFPROP10 and fast lookup tables, it provides real-fluid models for two-phase flow calculations.</li>
+                        <li>Capable of modeling of components such as airfoil diffusers and tandem diffusers.</li>
+                        <li>Functionality includes scaling, cutting, flow cut, and variable geometry models.</li>
+                        <li>Embedded optimizer with user-friendly operations supports optimization of parameters in the one-dimensional mean-line model.</li>
+                        <li>User Defined Functionality (UDF) allows users to change the default models and functionalities of the program.</li>
+                    </ul>
+                    <div class="highlight-note">
+                        <p><strong>* The Data Reduction function can calibrate the one-dimensional model to match experimental / simulation data point by point across the entire performance map. After calibration, the model can accurately predict machine performance curves when replacing working fluids or modeling similar designs.</strong></p>
+                    </div>
+                    <img src="/img/products/turbotides/4.png" alt="Data Reduction" class="feature-image">
+                </div>
+
+                <div class="content-panel" id="content-throughflow-analysis">
+                    <h2>2D Through-Flow Analysis</h2>
+                    <p>Includes meridional (S2 surface) through-flow calculations and blade-to-blade (S1 surface) calculations</p>
+                    <ul class="checklist">
+                        <li>Based on streamline curvature method.</li>
+                        <li>Automatically extract blade geometry (blade angle, thickness, lean angle).</li>
+                        <li>Generate grids automatically from 3D geometry.</li>
+                        <li>Consider loss models, deviation angle models, blockage models, and radial mixing.</li>
+                        <li>Supports flow passage and blade profile optimization, with convenient operation.</li>
+                        <li>Supports multi-operating point analysis function.</li>
+                        <li>Supports comparative design function, compare flow results under design and off design conditions.</li>
+                        <li>Supports post-processing plotting for individual components.</li>
+                    </ul>
+                    <img src="/img/products/turbotides/5.png" alt="Through-Flow Analysis" class="feature-image">
+                </div>
+
+                <!-- Add more functional modules content panels -->
+                <div class="content-panel" id="content-geometry-modeler">
+                    <h2>Geometric Modeling</h2>
+                    <p>The geometric modeling module comprehensively supports the generation of 3D parameterized geometric models.</p>
+                    <ul class="checklist">
+                        <li>Encompasses the geometric configurations of common components found in centrifugal or axial compressors, turbines, pumps, and fans.</li>
+                        <li>Offers real-time visualization and geometric editing features, including adding/subtracting/editing adjustments to flow components, mechanical structure editing (such as hub shape, chamfering, filleting, and shaft holes), and impeller cutting and scaling functions.</li>
+                        <li>Supports various methods for defining parameters such as throat area in wedge diffusers.</li>
+                        <li>Capable of generating various airfoil blade models, such as NACA, DCA, and MCA.</li>
+                        <li>Robust volute editing features allow for easy control and editing of various cross-sections, tongue, outlet pipe sections, and double volute configurations.</li>
+                        <li>Supports parameterized modeling of fan inlet chambers, pump inlet chambers, and double-suction inlet chambers.</li>
+                        <li>Provides the capability to export three-dimensional models in a universal format for solid and fluid domains.</li>
+                        <li>Supports the import of existing 3D CAD models, which can be parameterized and used for simulation and optimization design.</li>
+                        <li>The embedded database facilitates the convenient storage and reuse of 3D component models.</li>
+                    </ul>
+                    <img src="/img/products/turbotides/6.png" alt="Geometric Modeling" class="feature-image">
+                </div>
+
+                <div class="content-panel" id="content-cfd-analysis">
+                    <h2>3D CFD Flow Field Simulation Analysis</h2>
+                    <p>The 3D CFD module provides a full 3D pressure-based flow field simulation solver that supports structured, unstructured, or hybrid grids.</p>
+                    <ul class="checklist">
+                        <li>Supports parallel computing.</li>
+                        <li>Automatically generates grids and allows expert manual adjustment.</li>
+                        <li>Incorporates grid smoothing algorithms with added source terms to improve grid orthogonality.</li>
+                        <li>Allows the specification of boundary layer thickness or y+ values.</li>
+                        <li>Automatically sets boundary conditions and imports inlet/outlet boundary conditions and fluid properties from one-dimensional analyses.</li>
+                        <li>Calculates real-fluid properties and generates thermodynamic property tables.</li>
+                        <li>Supports simulation calculations for cavitation and two-phase flow.</li>
+                        <li>User-friendly post-processing features include text reports and views of grids, contours, vectors, streamlines, and isosurfaces.</li>
+                        <li>Facilitates easy comparison between results from three-dimensional CFD flow field analyses and predictions from the one-dimensional mean-line module.</li>
+                        <li>Provides an interface with the third-party software TurboGrid.</li>
+                    </ul>
+                    <img src="/img/products/turbotides/7.png" alt="CFD Analysis" class="feature-image">
+                </div>
+
+                <div class="content-panel" id="content-fea-analysis">
+                    <h2>3D FEA Finite Element Analysis</h2>
+                    <p>Supports finite element analysis of impellers and volutes.</p>
+                    <ul class="checklist">
+                        <li>Convenient pre-processing functions: automatic grid generation, automatic load and constraint settings with The 3D FEA finite element module.</li>
+                        <li>Supports one-way fluid-structure coupling with The 3D FEA finite element module.</li>
+                        <li>Supports calculations with linear and nonlinear materials, including elastic, plastic, creep, and hyperelastic materials.</li>
+                        <li>Provides functions for static strength analysis, thermal analysis, and modal vibration analysis.</li>
+                        <li>Supports harmonic response analysis, transient dynamics analysis, transient heat transfer analysis, and stochastic vibration analysis.</li>
+                        <li>Quickly calculates mass, moment of inertia, etc.</li>
+                        <li>User-friendly post-processing features include text reports, Campbell diagrams, interference diagrams, contour maps, and deformation diagrams.</li>
+                    </ul>
+                    <img src="/img/products/turbotides/8.png" alt="FEA Analysis" class="feature-image">
+                </div>
+
+                <div class="content-panel" id="content-database-system">
+                    <h2>Embedded Database</h2>
+                    <p>The embedded database is a deployable data storage center accessible over the network, equipped with permission control functionalities, seamlessly interconnected with the design modules. Users can conveniently store and reuse existing design models, test data, geometric models, and custom functions through the database.</p>
+                    <ul class="checklist">
+                        <li>Any object within TurboTides (components, machines, curves, fluid models, etc.) can be saved to the database and reloaded into the current design.</li>
+                        <li>The object-oriented database can input various complex data structures such as performance maps, components, machines, geometric models, and fluid models.</li>
+                        <li>Users can customize data record types and specify properties through scripts.</li>
+                        <li>All content stored in the database is searchable, recoverable, and reusable.</li>
+                        <li>Supports both local and remote online access to data.</li>
+                    </ul>
+                    <img src="/img/products/turbotides/9.png" alt="Embedded Database" class="feature-image">
+                </div>
+
+                <div class="content-panel" id="content-optimization-engine">
+                    <h2>Optimization Design</h2>
+                    <p>Both global /machine level optimization and local component level optimization can be performed using TurboTides' built-in optimization functionality. By setting optimization parameters, defining objectives, selecting appropriate solvers, and optionally constraining input and output parameters, users can conduct automated optimization calculations. The software provides a visualization interface during the optimization process to display real-time iterations of the optimization.</p>
+                    <ul class="checklist">
+                        <li>Supports Latin Hypercube Sampling, grid-adaptive search, Maximum Expected Improvement algorithm, and Genetic Algorithm optimization algorithms.</li>
+                        <li>Provides the fourth-generation OASIS optimization algorithm based on artificial intelligence and machine learning, effectively addressing optimization design problems with high variability, expensive constraints, multiple objectives, and black-box constraints.</li>
+                        <li>The optimizer can call solvers for cycle analysis, one-dimensional, two-dimensional passage flow, CFD, and FEA either separately or in combination.</li>
+                        <li>Through script writing, users can customize complex optimization processes, such as multidisciplinary optimization involving CFD and FEA to optimize flow fields and impeller structures.</li>
+                    </ul>
+                    <img src="/img/products/turbotides/10.png" alt="Optimization Design" class="feature-image">
+                </div>
+
+                <!-- Application Areas Content Panels -->
+                <div class="content-panel" id="content-centrifugal-compressors">
+                    <h2>Compressor Design System</h2>
+                    <p>TurboTides for Compressors contains all the design, analysis and optimization tools a compressor designer needs in a single monolithic seamless workflow and is made for the design and optimization for Radial, Mixed-flow and Axial Compressors.</p>
+
+                    <div class="compressor-images-row">
+                        <img src="/img/software/compressor1.png" alt="Compressor Design Interface">
+                        <img src="/img/software/compressor2.png" alt="Compressor Analysis Results">
+                    </div>
+
+                    <div class="includes-section">
+                        <h3>Includes:</h3>
+                        <ul class="compressor-features-list">
+                            <li>Modern seamless workflow (GUI)</li>
+                            <li>Cycle analysis supports the design, analysis, and optimization of all common thermodynamic cycles and configurations</li>
+                            <li>
+                                1D meanline with advanced Data Reduction for model calibration
+                                <ul class="sub-features">
+                                    <li>Design complete stages with additional components such as vaned and vaneless diffusers, stators, volutes, and additional stages</li>
+                                </ul>
+                            </li>
+                            <li>2D Throughflow and Blade to Blade CFD Solvers</li>
+                            <li>Detailed 3D geometry generation</li>
+                            <li>3D blade shaping operations</li>
+                            <li>Advanced volute shaping and editing</li>
+                            <li>
+                                Integrated 3D CFD
+                                <ul class="sub-features">
+                                    <li>Automatic structured meshing mesh and simulation setup</li>
+                                    <li>"One-click" setup</li>
+                                </ul>
+                            </li>
+                            <li>Built-in optimization</li>
+                            <li>Database for storing and re-using legacy designs for use in future designs</li>
+                            <li>
+                                CAD Import/Export
+                                <ul class="sub-features">
+                                    <li>Ability to export the 3D model for further applications like flow simulation (CFD), finite element analysis (FEA) and mechanical design (CAD)</li>
+                                </ul>
+                            </li>
+                            <li>3D Structural Finite Element Analysis (FEA)</li>
+                            <li>Support linear and non-linear static analysis, thermal analysis and modal analysis</li>
+                            <li>Automatic pre-processing: Automatic mesh generation and automatic setup of constraints, loads, and CFD loads</li>
+                            <li>Full post-processing support: text report, Campbell interference diagram, contour and deformation plots, etc.</li>
+                            <li>Integration for seamless export to ANSYS CFX (through Turbo Grid) or ANSYS Mechanical. TurboTides is an authorized ANSYS Software Solutions Partner</li>
+                            <li>No extra costs for common functions such as LAN floating, multi-stage, CAD Import/Export, additional processors, etc.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-panel" id="content-axial-turbines">
+                    <h2>Turbine Design System</h2>
+                    <p>TurboTides for Turbines contains all the design, analysis and optimization tools a turbine designer needs in a single monolithic seamless workflow and is made for the design and optimization for Radial, Mixed-flow and Axial turbines.</p>
+
+                    <div class="compressor-images-row">
+                        <img src="/img/software/turbine1.jpg" alt="Turbine Design Interface">
+                        <img src="/img/software/turbine2.png" alt="Turbine 3D Model">
+                    </div>
+
+                    <div class="includes-section">
+                        <h3>Includes:</h3>
+                        <ul class="compressor-features-list">
+                            <li>Modern seamless workflow (GUI)</li>
+                            <li>Cycle analysis supports the design, analysis, and optimization of all common thermodynamic cycles and configurations</li>
+                            <li>
+                                1D meanline with advanced Data Reduction for model calibration
+                                <ul class="sub-features">
+                                    <li>Design complete stages with additional components such as vaned and vaneless diffusers, stators, volutes, and additional stages</li>
+                                </ul>
+                            </li>
+                            <li>2D Throughflow and Blade to Blade CFD Solvers</li>
+                            <li>Detailed 3D geometry generation</li>
+                            <li>3D blade shaping operations</li>
+                            <li>Advanced volute shaping and editing</li>
+                            <li>
+                                Integrated 3D CFD
+                                <ul class="sub-features">
+                                    <li>Automatic structured meshing mesh and simulation setup</li>
+                                    <li>"One-click" setup</li>
+                                </ul>
+                            </li>
+                            <li>Built-in optimization</li>
+                            <li>Database for storing and re-using legacy designs for use in future designs</li>
+                            <li>
+                                CAD Import/Export
+                                <ul class="sub-features">
+                                    <li>Ability to export the 3D model for further applications like flow simulation (CFD), finite element analysis (FEA) and mechanical design (CAD)</li>
+                                </ul>
+                            </li>
+                            <li>3D Structural Finite Element Analysis (FEA)</li>
+                            <li>Support linear and non-linear static analysis, thermal analysis and modal analysis</li>
+                            <li>Automatic pre-processing: Automatic mesh generation and automatic setup of constraints, loads, and CFD loads</li>
+                            <li>Full post-processing support: text report, Campbell interference diagram, contour and deformation plots, etc.</li>
+                            <li>Integration for seamless export to ANSYS CFX (through Turbo Grid) or ANSYS Mechanical. TurboTides is an authorized ANSYS Software Solutions Partner</li>
+                            <li>No extra costs for common functions such as LAN floating, multi-stage, CAD Import/Export, additional processors, etc.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-panel" id="content-pumps-fans">
+                    <h2>Pump Design System</h2>
+                    <p>TurboTides for Pumps contains all the design, analysis and optimization tools a pump designer needs in a single monolithic seamless workflow and is made for the design and optimization for Radial, Mixed-flow and Axial pumps.</p>
+
+                    <div class="compressor-images-row">
+                        <img src="/img/software/pump1.jpg" alt="Pump Design System Interface">
+                        <img src="/img/software/pump2.png" alt="Pump 3D Model and Analysis">
+                    </div>
+
+                    <div class="includes-section">
+                        <h3>Includes:</h3>
+                        <ul class="compressor-features-list">
+                            <li>
+                                Modern seamless workflow (GUI)
+                                <ul class="sub-features">
+                                    <li>Built-in optimization</li>
+                                </ul>
+                            </li>
+                            <li>
+                                1D meanline with advanced Data Reduction for model calibration
+                                <ul class="sub-features">
+                                    <li>Database for storing and re-using legacy designs for use in future designs</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Design complete stages with additional components such as vaned and vaneless diffusers, stators, volutes, and additional stages.
+                                <ul class="sub-features">
+                                    <li>CAD Import/Export</li>
+                                </ul>
+                            </li>
+                            <li>
+                                2D Throughflow and Blade to Blade CFD Solvers
+                                <ul class="sub-features">
+                                    <li>Ability to import CAD models from common formats</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Detailed 3D geometry generation
+                                <ul class="sub-features">
+                                    <li>Ability to export the 3D model for further applications like flow simulation (CFD), finite element analysis (FEA) and mechanical design (CAD)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                3D blade shaping operations
+                                <ul class="sub-features">
+                                    <li>Integration for seamless export to ANSYS CFX (through Turbo Grid) or ANSYS Mechanical. TurboTides is an authorized ANSYS Software Solutions Partner.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Advanced volute shaping and editing
+                                <ul class="sub-features">
+                                    <li>No extra costs for common functions such as LAN floating, multi-stage, CAD Import/Export, additional processors, etc.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Integrated 3D CFD
+                                <ul class="sub-features">
+                                    <li>Automatic structured meshing mesh and simulation setup</li>
+                                    <li>"One-click" setup</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-panel" id="content-mixed-flow-machines">
+                    <h2>Fan Design System</h2>
+                    <p>TurboTides for fans (and blowers) contains all the design, analysis and optimization tools a fan designer needs in a single monolithic seamless workflow and is made for the design and optimization for Radial, Mixed-flow and Axial fans.</p>
+
+                    <div class="compressor-images-row">
+                        <img src="/img/software/fan1.png" alt="Fan Design System Interface">
+                        <img src="/img/software/fan2.png" alt="Fan 3D Model and Analysis">
+                    </div>
+
+                    <div class="includes-section">
+                        <h3>Includes:</h3>
+                        <ul class="compressor-features-list">
+                            <li>
+                                Modern seamless workflow (GUI)
+                                <ul class="sub-features">
+                                    <li>Built-in optimization</li>
+                                </ul>
+                            </li>
+                            <li>
+                                1D meanline with advanced Data Reduction for model calibration
+                                <ul class="sub-features">
+                                    <li>Database for storing and re-using legacy designs for use in future designs</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Design complete stages with additional components such as vaned and vaneless diffusers, stators, volutes, and additional stages.
+                                <ul class="sub-features">
+                                    <li>CAD Import/Export</li>
+                                </ul>
+                            </li>
+                            <li>
+                                2D Throughflow and Blade to Blade CFD Solvers
+                                <ul class="sub-features">
+                                    <li>Ability to import CAD models from common formats</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Detailed 3D geometry generation
+                                <ul class="sub-features">
+                                    <li>Ability to export the 3D model for further applications like flow simulation (CFD), finite element analysis (FEA) and mechanical design (CAD)</li>
+                                </ul>
+                            </li>
+                            <li>3D blade shaping operations</li>
+                            <li>Advanced volute shaping and editing</li>
+                            <li>
+                                Integrated 3D CFD
+                                <ul class="sub-features">
+                                    <li>Automatic structured meshing mesh and simulation setup</li>
+                                    <li>"One-click" setup</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Integration for seamless export to ANSYS CFX (through Turbo Grid) or ANSYS Mechanical. TurboTides is an authorized ANSYS Software Solutions Partner.
+                            </li>
+                            <li>No extra costs for common functions such as LAN floating, multi-stage, CAD Import/Export, additional processors, etc.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 处理导航展开/收起
+        const sectionHeaders = document.querySelectorAll('.nav-section-header');
+
+        sectionHeaders.forEach(header => {
+            header.addEventListener('click', function () {
+                const section = this.dataset.section;
+                const content = document.querySelector(`[data-content="${section}"]`);
+                const arrow = this.querySelector('.nav-arrow');
+
+                if (content.classList.contains('expanded')) {
+                    content.classList.remove('expanded');
+                    arrow.textContent = '▶';
+                } else {
+                    content.classList.add('expanded');
+                    arrow.textContent = '▼';
+                }
+            });
+        });
+
+        // 处理内容切换
+        const navItems = document.querySelectorAll('.nav-item');
+        const contentPanels = document.querySelectorAll('.content-panel');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // 移除所有活动状态
+                navItems.forEach(navItem => navItem.classList.remove('active'));
+                contentPanels.forEach(panel => panel.classList.remove('active'));
+
+                // 添加当前活动状态
+                this.classList.add('active');
+                const tabId = this.dataset.tab;
+                const contentPanel = document.getElementById(`content-${tabId}`);
+                if (contentPanel) {
+                    contentPanel.classList.add('active');
+                }
+            });
+        });
+    });</script>
+{{ end }}

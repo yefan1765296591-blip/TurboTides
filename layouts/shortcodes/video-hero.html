@@ -1,0 +1,195 @@
+<div class="hero-video-wrapper">
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="auto">
+        <source src="{{ .Get "video" }}" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-center-news">
+        {{ $page := .Page }}
+        {{ with $page.Params.news }}
+        {{ range . }}
+        <a class="hero-news-item" href="{{ .link }}">{{ .title }}</a>
+        {{ end }}
+        {{ else }}
+        <a class="hero-news-item" href="/blog/news/news1/">TurboTides CFD Meets NASA High Efficiency Centrifugal Compressor</a>
+        {{ end }}
+    </div>
+
+    <div class="hero-headlines">
+        <h4 class="hero-line-1 hero-text-animate" data-delay="0.3">{{ .Get "headline" }}</h4>
+
+        <!-- 蓝色线条图片，放在TURBOTIDES上方 -->
+        <div class="hero-blue-line hero-text-animate" data-delay="0.5">
+            <img src="/img/home/slide-blue-line.png" alt="">
+        </div>
+
+        <h1 class="hero-line-2 hero-text-animate hero-text-scale-in" data-delay="0.6">{{ .Get "sub1" }}</h1>
+        <h3 class="hero-line-3 hero-text-animate" data-delay="0.9">{{ .Get "sub2" }}</h3>
+    </div>
+
+    <div class="hero-scroll-indicator">
+        <span></span>
+    </div>
+</div>
+
+<style>
+    .hero-text-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: heroTextFadeIn 1.2s ease-out forwards;
+        animation-play-state: paused;
+    }
+
+        .hero-text-animate[data-delay="0.3"] {
+            animation-delay: 0.3s;
+        }
+
+        .hero-text-animate[data-delay="0.5"] {
+            animation-delay: 0.5s;
+        }
+
+        .hero-text-animate[data-delay="0.6"] {
+            animation-delay: 0.6s;
+        }
+
+        .hero-text-animate[data-delay="0.9"] {
+            animation-delay: 0.9s;
+        }
+
+    /* 蓝色线条样式 - 向右移动 */
+    .hero-blue-line {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem 0 -1rem 0;
+        height: 10px;
+        transform: translateX(50px) !important;
+    }
+
+        .hero-blue-line img {
+            height: 100%;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+    /* TURBOTIDES 的缩放动画效果 - 只有由大到小的视觉冲击 */
+    .hero-text-scale-in {
+        opacity: 0;
+        transform: scale(2.5);
+        animation: heroTextScaleIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes heroTextFadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* TURBOTIDES 缩放动画 - 从大到小的视觉冲击 */
+    @keyframes heroTextScaleIn {
+        0% {
+            opacity: 0;
+            transform: scale(2.5);
+        }
+
+        40% {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* 确保动画在页面加载后启动 */
+    .hero-text-animate.animate-start {
+        animation-play-state: running;
+    }
+
+    /* 适配移动端的动画效果 */
+    @media (max-width: 480px) {
+        .hero-text-animate:not(.hero-text-scale-in) {
+            transform: translateY(20px);
+        }
+
+        .hero-blue-line {
+            height: 8px;
+            margin: 0.2rem 0 -0.2rem 0;
+            transform: translateX(25px) !important; /* 移动端向右移动30px */
+        }
+
+            .hero-blue-line img {
+                max-width: 120px;
+            }
+
+        .hero-text-scale-in {
+            transform: scale(2);
+        }
+
+        @keyframes heroTextFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroTextScaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(2);
+            }
+
+            40% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero-text-animate {
+            opacity: 1;
+            transform: translateY(0);
+            animation: none;
+        }
+
+        .hero-text-scale-in {
+            opacity: 1;
+            transform: scale(1);
+            animation: none;
+        }
+
+        .hero-blue-line {
+            transform: translateX(55px) !important;
+        }
+    }
+</style>
+
+<script>document.addEventListener('DOMContentLoaded', function() {
+    // 等待页面完全加载后启动动画
+    setTimeout(function() {
+        const heroTexts = document.querySelectorAll('.hero-text-animate');
+        heroTexts.forEach(text => {
+            text.classList.add('animate-start');
+        });
+    }, 100);
+});</script>

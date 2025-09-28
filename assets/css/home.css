@@ -1,0 +1,1086 @@
+﻿/* ================================
+   首页CSS文件结构说明
+   ================================ */
+
+/* === 1. 基础样式与层级设置 === */
+.hero-video-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.core-intro,
+.block-section,
+.industries-section,
+.testimonials,
+.block-section.who-we-are {
+    position: relative;
+    z-index: 2;
+}
+
+/* === 2. Hero 视频背景区域 === */
+.hero-video-wrapper {
+    position: relative;
+    height: 102vh;
+    overflow: hidden;
+}
+
+.hero-bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    filter: brightness(0.85);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+}
+
+/* === 3. Hero 内容区域 === */
+.hero-center-news {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1.2rem;
+    flex-direction: column;
+}
+
+.hero-news-item {
+    background: rgba(255,255,255,0.15);
+    padding: .55rem 1.1rem;
+    border-radius: 4px;
+    font-size: .9rem;
+    color: #fff;
+    backdrop-filter: blur(4px);
+    text-decoration: none;
+    transition: .3s;
+}
+
+    .hero-news-item:hover {
+        background: rgba(255,255,255,0.3);
+    }
+
+.hero-headlines {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+}
+
+.hero-line-1 {
+    letter-spacing: .15em;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 .5rem;
+}
+
+.hero-line-2 {
+    font-size: 3.2rem;
+    margin: .2rem 0;
+    font-weight: 700;
+}
+
+.hero-line-3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: .7rem;
+}
+
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 86px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 38px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+    .hero-scroll-indicator span {
+        width: 6px;
+        height: 6px;
+        background: #fff;
+        border-radius: 50%;
+        animation: scrollDot 1.6s linear infinite;
+        margin-top: 8px;
+    }
+
+@keyframes scrollDot {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+}
+
+/* === 4. 新闻条区域 === */
+.news-strip {
+    background: #0b2f4c;
+    padding: .8rem 0;
+}
+
+.news-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 1rem; /* 添加移动端内边距 */
+}
+
+.news-pill {
+    background: #144b75;
+    color: #fff;
+    padding: .45rem .9rem;
+    border-radius: 30px;
+    font-size: .8rem;
+    text-decoration: none;
+    transition: .25s;
+}
+
+    .news-pill:hover {
+        background: #1c659b;
+    }
+
+/* === 5. Core Intro 区域 === */
+.core-intro {
+    padding: 3.5rem 1.2rem 2.5rem;
+    text-align: center;
+    background: #fff;
+}
+
+.ci-inner {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.ci-lead {
+    font-size: 1.85rem;
+    line-height: 1.28;
+    font-weight: 600;
+    color: #2d3a42;
+    letter-spacing: .5px;
+    margin-bottom: 1.1rem;
+}
+
+.ci-text {
+    font-size: 1rem;
+    color: #5a646c;
+    line-height: 1.55;
+}
+
+/* === 6. 通用区块样式 === */
+.block-section {
+    background: #f5f8fb;
+    padding: 3.5rem 1.2rem;
+    text-align: center;
+}
+
+    .block-section h2 {
+        font-size: 1.58rem;
+        line-height: 1.18;
+        font-weight: 500;
+        margin: 0 0 .95rem;
+        width: 100%;
+        color: #1f262b;
+    }
+
+        .block-section h2 .w-first {
+            font-weight: 700;
+            letter-spacing: .5px;
+        }
+
+    .block-section p {
+        max-width: 960px;
+        margin: 0 auto 1.6rem;
+        line-height: 1.6;
+    }
+
+    .block-section .bs-inner {
+        max-width: 820px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: 0 6px;
+    }
+
+    .block-section .bs-text {
+        margin: 0 0 .75rem;
+        padding: 0;
+        color: #2e353a;
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+        .block-section .bs-text .bs-rest {
+            display: block;
+            margin-top: 1.5rem;
+            font-size: .9rem;
+            line-height: 1.52;
+            color: #616a72;
+        }
+
+    .block-section.no-bg {
+        background: transparent;
+        padding-top: 2.2rem;
+    }
+
+/* === 7. 按钮样式 === */
+.btn-cta {
+    display: inline-block;
+    background: #0a577a;
+    color: #fff;
+    padding: .75rem 1.8rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    transition: .3s;
+}
+
+    .btn-cta:hover {
+        background: #357ab8;
+    }
+
+.block-section .btn-cta.link-inline {
+    background: none;
+    font-size: .85rem;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: #1994d1;
+    font-weight: 550;
+    letter-spacing: .4px;
+    margin: 1rem 0 0 0;
+    text-decoration: none;
+    position: relative;
+}
+
+    .block-section .btn-cta.link-inline:hover {
+        text-decoration: underline;
+        color: #0a4f6d;
+    }
+
+    .block-section .btn-cta.link-inline:focus-visible {
+        outline: 2px solid #0a577a;
+        outline-offset: 2px;
+    }
+
+/* === 8. Who We Are 区域 === */
+.block-section.who-we-are {
+    background: #f5f7f9;
+    text-align: left;
+    padding: 3.5rem 1.2rem 3.2rem;
+}
+
+    .block-section.who-we-are .bs-inner.ww-layout {
+        max-width: 1150px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 420px;
+        gap: 2.6rem;
+        align-items: start;
+    }
+
+    .block-section.who-we-are h2 {
+        font-size: 1.58rem;
+        line-height: 1.18;
+        font-weight: 500;
+        margin: 0 0 .95rem;
+        color: #1f262b;
+        letter-spacing: .3px;
+    }
+
+        .block-section.who-we-are h2 .w-first {
+            font-weight: 700;
+            letter-spacing: .5px;
+        }
+
+    .block-section.who-we-are .bs-text {
+        margin: 0 0 .75rem;
+        font-size: 1rem;
+        line-height: 1.55;
+        color: #2e353a;
+    }
+
+        .block-section.who-we-are .bs-text .wwa-rest,
+        .block-section.who-we-are .bs-text .bs-rest {
+            display: block;
+            margin-top: 1.5rem;
+            font-size: .9rem;
+            line-height: 1.52;
+            color: #616a72;
+        }
+
+    .block-section.who-we-are .btn-cta.link-inline {
+        background: none;
+        font-size: .85rem;
+        padding: 0;
+        color: #1994d1;
+        font-weight: 550;
+        letter-spacing: .4px;
+        margin-top: 1rem;
+    }
+
+        .block-section.who-we-are .btn-cta.link-inline:hover {
+            text-decoration: underline;
+            color: #0a4f6d;
+        }
+
+    /* === 9. Who We Are 轮播组件 === */
+    .block-section.who-we-are .ww-media {
+        position: relative;
+        width: 100%;
+        max-width: 420px;
+        margin-left: auto;
+    }
+
+    .block-section.who-we-are .ww-carousel {
+        position: relative;
+        width: 100%;
+        height: 280px;
+        overflow: hidden;
+        border-radius: 0;
+        background: #0c1e27;
+        touch-action: pan-y;
+        user-select: none;
+        cursor: grab;
+    }
+
+        .block-section.who-we-are .ww-carousel.grabbing {
+            cursor: grabbing;
+        }
+
+    .block-section.who-we-are .ww-track {
+        display: flex;
+        height: 100%;
+        will-change: transform;
+    }
+
+    .block-section.who-we-are .ww-slide {
+        flex: 0 0 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .block-section.who-we-are .ww-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+/* === 10. Industries We Serve 区域 === */
+.industries-section {
+    background: #ffffff;
+    padding: 3.2rem 1.2rem 3.4rem;
+    text-align: left;
+}
+
+    .industries-section .ind-inner {
+        max-width: 1150px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(0, 480px) 1fr;
+        gap: 3rem;
+        align-items: start;
+    }
+
+    .industries-section h2 {
+        font-size: 1.58rem;
+        line-height: 1.18;
+        font-weight: 500;
+        margin: 0 0 1rem;
+        color: #1f262b;
+    }
+
+        .industries-section h2 .w-first {
+            font-weight: 700;
+            letter-spacing: .5px;
+        }
+
+    .industries-section .ind-sub {
+        margin: 0 0 1.2rem;
+        font-size: .98rem;
+        line-height: 1.55;
+        color: #2c3237;
+        max-width: 520px;
+    }
+
+    .industries-section .ind-btn {
+        margin-top: .4rem;
+        font-size: .78rem;
+        letter-spacing: .08em;
+        padding: .65rem 1.4rem;
+        background: #0a577a;
+    }
+
+        .industries-section .ind-btn:hover {
+            background: #357ab8;
+        }
+
+    .industries-section .ind-right {
+        display: flex;
+        align-items: stretch;
+        gap: 4rem;
+    }
+
+        .industries-section .ind-right .ind-col {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+        }
+
+            .industries-section .ind-right .ind-col:first-child {
+                justify-content: space-between;
+            }
+
+            .industries-section .ind-right .ind-col li {
+                list-style: none;
+                position: relative;
+                padding: .42rem 0 .42rem 1.2rem;
+                font-size: .9rem;
+                line-height: 1.45;
+            }
+
+            .industries-section .ind-right .ind-col:first-child li::before {
+                content: "✰";
+                position: absolute;
+                left: -.5rem;
+                top: 50%;
+                transform: translateY(-52%);
+                font-size: 1.25rem;
+                color: #1994d1;
+                line-height: 1;
+                background: none;
+                width: auto;
+                height: auto;
+                border-radius: 0;
+            }
+
+            .industries-section .ind-right .ind-col:nth-child(2) li::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: .9rem;
+                width: 6px;
+                height: 6px;
+                background: #1994d1;
+                border-radius: 50%;
+                transform: translateY(-50%);
+            }
+
+/* === 11. What Others Are Saying 区域 === */
+.testimonials-single {
+    background: #f5f7f9;
+    padding: 3.2rem 1.2rem 3.4rem;
+    text-align: left;
+}
+
+    .testimonials-single .ts-inner {
+        max-width: 1150px;
+        margin: 0 auto;
+        font-family: "Open Sans", "Segoe UI", Arial, Helvetica, sans-serif;
+    }
+
+    .testimonials-single .ts-heading {
+        font-size: 1.58rem;
+        line-height: 1.18;
+        font-weight: 500;
+        margin: 0 0 .85rem;
+        color: #1f262b;
+    }
+
+        .testimonials-single .ts-heading .w-first {
+            font-weight: 700;
+            letter-spacing: .5px;
+        }
+
+    .testimonials-single .ts-line {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, #d1d8dc, #e5eaed, #d1d8dc);
+        margin: 0 0 1.3rem;
+    }
+
+.ts-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+    cursor: grab;
+    margin: 0 0 1.2rem;
+}
+
+    .ts-carousel.dragging {
+        cursor: grabbing;
+    }
+
+.ts-track {
+    display: flex;
+    will-change: transform;
+}
+
+.ts-slide {
+    flex: 0 0 100%;
+    padding: 0 .2rem;
+}
+
+.ts-card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ts-logo-wrap {
+    margin: 0 0 .8rem;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .ts-logo-wrap img {
+        max-height: 45px;
+        width: auto;
+        object-fit: contain;
+        filter: grayscale(.05) brightness(.98);
+        transition: filter .35s;
+    }
+
+        .ts-logo-wrap img:hover {
+            filter: grayscale(0) brightness(1);
+        }
+
+.testimonials-single .ts-heading {
+    cursor: pointer;
+}
+
+.testimonials-single .ts-heading-link {
+    display: inline-block;
+    transition: color .28s ease, transform .45s cubic-bezier(.16, .72, .29, 1.01);
+    transform-origin: left center;
+    will-change: transform;
+}
+
+    .testimonials-single .ts-heading-link:hover,
+    .testimonials-single .ts-heading-link:focus-visible {
+        transform: scale(1.055);
+        color: #0a63a5;
+        text-decoration: none;
+    }
+
+.ts-quote {
+    position: relative;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    color: #283038;
+    font-weight: 500;
+    padding: 2.2rem 2.6rem 2.4rem;
+    max-width: 1000px;
+    text-align: center;
+}
+
+    .ts-quote::before,
+    .ts-quote::after {
+        position: absolute;
+        font-family: "Times New Roman", Times, serif;
+        font-weight: 700;
+        font-size: 2.5rem;
+        line-height: 1;
+        color: #1994d1;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .ts-quote::before {
+        content: """; top: 0;
+        left: 0;
+        transform: translate(-8%, -25%);
+    }
+
+    .ts-quote::after {
+        content: """; right: 0;
+        bottom: 0;
+        transform: translate(18%, 40%);
+    }
+
+.ts-author {
+    margin: 0;
+    font-size: .8rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #1f262b;
+    font-weight: 700;
+    text-align: center;
+}
+
+.ts-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin: .35rem 0 1.1rem;
+    padding: 0;
+    width: 100%;
+}
+
+.ts-dot {
+    width: 6px;
+    height: 6px;
+    background: #c5ccd1;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .3s, transform .3s;
+}
+
+    .ts-dot:hover {
+        background: #aeb6bb;
+    }
+
+    .ts-dot.active {
+        background: #1994d1;
+        transform: scale(1.3);
+        box-shadow: 0 0 0 3px rgba(25, 148, 209, 0.13);
+    }
+
+.ts-actions {
+    margin-top: .2rem;
+}
+
+.ts-more {
+    padding: .55rem 1.3rem;
+    font-size: .78rem;
+    letter-spacing: .08em;
+}
+
+/* === 12. 遗留轮播组件（向后兼容） === */
+.who-we-are {
+    background: #fff;
+    padding: 3.5rem 1.2rem 2rem;
+}
+
+.w-row {
+    max-width: 1250px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.w-text h2 {
+    font-size: 2rem;
+    margin: 0 0 1.3rem;
+}
+
+.w-text p {
+    line-height: 1.6;
+    color: #333;
+}
+
+.image-carousel {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #111;
+}
+
+    .image-carousel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+.ic-item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .6s ease;
+}
+
+    .ic-item.active {
+        opacity: 1;
+    }
+
+.ic-prev,
+.ic-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    border: none;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+
+    .ic-prev:hover,
+    .ic-next:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+.ic-prev {
+    left: 12px;
+}
+
+.ic-next {
+    right: 12px;
+}
+
+.ic-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.ic-dot {
+    width: 11px;
+    height: 11px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s;
+}
+
+    .ic-dot.active,
+    .ic-dot:hover {
+        background: #fff;
+    }
+
+/* ================================
+   响应式断点样式
+   ================================ */
+
+/* === 超大屏幕 (1200px+) === */
+@media (min-width: 1200px) {
+    .hero-video-wrapper {
+        height: 100vh;
+    }
+
+    .news-container {
+        padding: 0 2rem;
+    }
+}
+
+/* === 大屏幕 (1100px - 1199px) === */
+@media (max-width: 1100px) {
+    .block-section.who-we-are .bs-inner.ww-layout {
+        max-width: 1000px;
+        grid-template-columns: minmax(0, 1fr) 350px;
+    }
+
+    .block-section.who-we-are .ww-media {
+        max-width: 350px;
+    }
+
+    .block-section.who-we-are .ww-carousel {
+        height: 280px;
+    }
+}
+
+/* === 中大屏幕 (980px - 1099px) === */
+@media (max-width: 980px) {
+    .industries-section .ind-inner {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+    }
+
+    .industries-section .ind-right {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1.6rem 2rem;
+    }
+}
+
+/* === 中屏幕 (900px - 979px) === */
+@media (max-width: 900px) {
+    .block-section.who-we-are .bs-inner.ww-layout {
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 2rem;
+    }
+
+    .block-section.who-we-are .ww-media {
+        max-width: 320px;
+    }
+
+    .block-section.who-we-are .ww-carousel {
+        height: 270px;
+    }
+}
+
+/* === 中小屏幕 (780px - 899px) === */
+@media (max-width: 780px) {
+    .block-section.who-we-are .bs-inner.ww-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .block-section.who-we-are .ww-media {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .block-section.who-we-are .ww-carousel {
+        height: 250px;
+    }
+}
+
+/* === 小屏幕 (760px - 779px) === */
+@media (max-width: 760px) {
+    .hero-scroll-indicator {
+        bottom: 45px;
+    }
+
+    .hero-line-2 {
+        font-size: 2.2rem;
+    }
+
+    .hero-line-3 {
+        font-size: 1rem;
+    }
+
+    .hero-center-news {
+        top: 14%;
+    }
+
+    .hero-headlines {
+        top: 40%;
+        width: 90%;
+    }
+
+    .image-carousel {
+        height: 250px;
+    }
+
+    .core-intro .ci-lead {
+        font-size: 1.4rem;
+    }
+
+    .block-section .bs-inner {
+        max-width: 90%;
+    }
+
+    .block-section h2 {
+        font-size: 1.45rem;
+    }
+
+    .block-section .bs-text .bs-rest {
+        font-size: .86rem;
+    }
+}
+
+/* === 移动端 (720px - 759px) === */
+@media (max-width: 720px) {
+    .testimonials-single {
+        padding: 3rem 1rem 3.2rem;
+    }
+
+    .ts-card {
+        padding: 1.8rem 1.4rem 1.7rem;
+        min-height: 240px;
+    }
+
+    .ts-quote {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        padding: 1.8rem 1.5rem 2rem;
+        font-size: 1.1rem;
+    }
+
+    .ts-logo-wrap {
+        min-height: 48px;
+        margin-bottom: 1rem;
+    }
+
+        .ts-logo-wrap img {
+            max-height: 48px;
+        }
+
+        .ts-logo-wrap:empty::before {
+            content: "";
+            display: block;
+            width: 56px;
+            height: 1px;
+            opacity: 0;
+        }
+
+    .testimonials-single .ts-heading {
+        font-size: 1.45rem;
+    }
+}
+
+/* === 小移动端 (640px - 719px) === */
+@media (max-width: 640px) {
+    .industries-section {
+        padding: 2.8rem 1rem 3rem;
+    }
+
+        .industries-section h2 {
+            font-size: 1.45rem;
+        }
+
+        .industries-section .ind-sub {
+            font-size: .92rem;
+        }
+
+        .industries-section .ind-right .ind-col li {
+            font-size: .86rem;
+            padding: .34rem 0 .34rem .95rem;
+        }
+
+        .industries-section .ind-btn {
+            width: 100%;
+            text-align: center;
+        }
+}
+
+/* === 超小屏幕 (600px - 639px) === */
+@media (max-width: 600px) {
+    .block-section.who-we-are {
+        padding: 3rem 1rem 2.4rem;
+    }
+
+        .block-section.who-we-are h2 {
+            font-size: 1.42rem;
+        }
+
+        .block-section.who-we-are .ww-carousel {
+            height: 210px;
+        }
+
+        .block-section.who-we-are .bs-text .wwa-rest,
+        .block-section.who-we-are .bs-text .bs-rest {
+            font-size: .86rem;
+        }
+}
+
+/* === 极小屏幕 (480px以下) === */
+@media (max-width: 480px) {
+    .hero-video-wrapper {
+        height: 90vh;
+    }
+
+    .hero-line-1 {
+        font-size: .9rem;
+    }
+
+    .hero-line-2 {
+        font-size: 1.8rem;
+    }
+
+    .hero-line-3 {
+        font-size: .9rem;
+    }
+
+    .core-intro {
+        padding: 2.5rem 1rem;
+    }
+
+        .core-intro .ci-lead {
+            font-size: 1.2rem;
+        }
+
+    .block-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .industries-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .testimonials-single {
+        padding: 2.5rem 1rem;
+    }
+
+    .ts-quote {
+        padding: 1.5rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+/* === 可访问性与动画偏好 === */
+@media (prefers-reduced-motion: reduce) {
+    .block-section.who-we-are .ww-track {
+        transition: none !important;
+    }
+
+    .ts-track {
+        transition: none !important;
+    }
+
+    .hero-scroll-indicator span {
+        animation: none;
+    }
+
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* === 高对比度模式支持 === */
+@media (prefers-contrast: high) {
+    .hero-overlay {
+        background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+    }
+
+    .hero-news-item {
+        background: rgba(255,255,255,0.9);
+        color: #000;
+    }
+
+    .ts-quote::before,
+    .ts-quote::after {
+        color: #000;
+    }
+}

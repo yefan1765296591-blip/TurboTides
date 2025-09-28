@@ -1,0 +1,46 @@
+<div class="image-carousel" data-autoplay="true">
+    {{ $page := .Page }}
+    {{ $imgs := $page.Params.carousel }}
+    {{ if $imgs }}
+    {{ range $i, $img := $imgs }}
+    <div class="ic-item {{ if eq $i 0 }}active{{ end }}">
+        <img src="{{ $img }}" alt="carousel image {{ add $i 1 }}">
+    </div>
+    {{ end }}
+    {{ else }}
+    <div class="ic-item active">
+        <img src="/img/about/company1.jpg" alt="default 1">
+    </div>
+    {{ end }}
+    <button class="ic-prev">&#10094;</button>
+    <button class="ic-next">&#10095;</button>
+    <div class="ic-dots">
+        {{ if $imgs }}
+        {{ range $i, $_ := $imgs }}
+        <span class="ic-dot {{ if eq $i 0 }}active{{ end }}" data-index="{{ $i }}"></span>
+        {{ end }}
+        {{ end }}
+    </div>
+</div>
+
+<script>document.addEventListener('DOMContentLoaded', function() {
+  const carousels = document.querySelectorAll('.image-carousel');
+  carousels.forEach(c => {
+    let items = c.querySelectorAll('.ic-item');
+    let dots = c.querySelectorAll('.ic-dot');
+    let idx = 0;
+    function show(i){
+      items.forEach(it=>it.classList.remove('active'));
+      dots.forEach(d=>d.classList.remove('active'));
+      items[i].classList.add('active');
+      if(dots[i]) dots[i].classList.add('active');
+      idx = i;
+    }
+    c.querySelector('.ic-next')?.addEventListener('click', ()=>show((idx+1)%items.length));
+    c.querySelector('.ic-prev')?.addEventListener('click', ()=>show((idx-1+items.length)%items.length));
+    dots.forEach(d=>d.addEventListener('click', ()=>show(parseInt(d.dataset.index))));
+    if(c.dataset.autoplay === "true"){
+      setInterval(()=>show((idx+1)%items.length), 5000);
+    }
+  });
+});</script>

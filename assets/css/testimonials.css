@@ -1,0 +1,278 @@
+/* === Testimonials Page (Standalone) === */
+.testimonials-page {
+    background: #f5f7f9;
+    padding: 3.2rem 0 3.6rem;
+    overflow: hidden; /* 为动画准备 */
+}
+
+.testim-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.3rem;
+}
+
+.t-page-title {
+    font-size: 2rem;
+    line-height: 1.15;
+    font-weight: 600;
+    margin: 0 0 2.2rem;
+    color: #1f262b;
+    letter-spacing: .5px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.tb-item {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2.4rem 0;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+    .tb-item.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .tb-item + .tb-item {
+        border-top: 1px solid #d9e1e6;
+    }
+
+.tb-logo {
+    flex: 0 0 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(80px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+    .tb-logo.animate-in {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+.tb-logo-inner {
+    width: 100%;
+    text-align: center;
+}
+
+.tb-logo img {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+    display: inline-block;
+    filter: grayscale(.05) brightness(.98);
+    transition: filter .4s;
+}
+
+    .tb-logo img:hover {
+        filter: none;
+    }
+
+.tb-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+    .tb-text.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.tb-quote {
+    position: relative;
+    margin: 0 0 1.8rem;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 400;
+    color: #777777;
+    padding: 1.5rem 0 1rem 0;
+}
+
+.tb-qtext {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+    .tb-qtext p {
+        margin: 0 0 1.4rem;
+        line-height: 1.4;
+    }
+
+        .tb-qtext p:last-child {
+            margin-bottom: 0;
+        }
+
+.tb-qmark {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 1;
+    color: #cccccc;
+    position: absolute;
+    display: block;
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+.tb-qmark-left {
+    top: 0;
+    left: -1rem;
+}
+
+.tb-qmark-right {
+    bottom: -0.5rem;
+    right: -0.5rem;
+}
+
+.tb-author {
+    margin-top: auto;
+}
+
+.tb-name {
+    margin: 0 0 0.4rem 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1f262b;
+    line-height: 1.2;
+}
+
+.tb-company-name {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #666666;
+    line-height: 1.3;
+}
+
+/* Inverse layout */
+.tb-item.inverse .tb-logo {
+    order: 2;
+    transform: translateX(-80px);
+}
+
+    .tb-item.inverse .tb-logo.animate-in {
+        transform: translateX(0);
+    }
+
+.tb-item.inverse .tb-text {
+    order: 1;
+}
+
+/* 响应式设计 */
+@media (max-width: 840px) {
+    .tb-item {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 0;
+        align-items: center;
+    }
+
+        .tb-item.inverse .tb-logo,
+        .tb-item.inverse .tb-text {
+            order: 0;
+        }
+
+        .tb-item.inverse .tb-logo {
+            transform: translateX(80px);
+        }
+
+    .tb-logo {
+        flex: 0 0 auto;
+        padding-top: 0;
+        transform: translateY(-30px);
+    }
+
+        .tb-logo.animate-in {
+            transform: translateY(0);
+        }
+
+    .tb-item.inverse .tb-logo {
+        transform: translateY(-30px);
+    }
+
+        .tb-item.inverse .tb-logo.animate-in {
+            transform: translateY(0);
+        }
+
+    .tb-quote {
+        font-size: 1.15rem;
+        text-align: left;
+        margin-bottom: 1.5rem;
+    }
+
+    .tb-text {
+        text-align: left;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .testim-wrap {
+        padding: 0 1rem;
+    }
+
+    .t-page-title {
+        font-size: 1.6rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .tb-item {
+        padding: 1.5rem 0;
+        gap: 1.5rem;
+    }
+
+    .tb-quote {
+        font-size: 1.05rem;
+        padding: 1rem 0 0.5rem 0;
+        margin-bottom: 1.2rem;
+    }
+
+    .tb-qmark {
+        font-size: 2.5rem;
+    }
+
+    .tb-qmark-left {
+        left: -0.7rem;
+    }
+
+    .tb-qmark-right {
+        right: -0.3rem;
+    }
+
+    .tb-name {
+        font-size: 1rem;
+    }
+
+    .tb-company-name {
+        font-size: 0.9rem;
+    }
+}
+
+/* 减少动画偏好的支持 */
+@media (prefers-reduced-motion: reduce) {
+    .t-page-title,
+    .tb-item,
+    .tb-logo,
+    .tb-text {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}

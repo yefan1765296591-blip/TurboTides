@@ -1,0 +1,235 @@
+<style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.95);
+        min-width: 180px;
+        box-shadow: 0 8px 16px rgba(0,0,0,.2);
+        z-index: 1000;
+        border-radius: 2px;
+        padding: 3px 0;
+        top: 100%;
+        left: 0;
+        margin-top: 5px;
+        border: 1px solid rgba(224, 224, 224, 0.8);
+        backdrop-filter: blur(10px);
+    }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color .3s;
+            font-size: .9rem;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(245, 245, 245, 0.6);
+            line-height: 1.2;
+        }
+
+            .dropdown-content a:last-child {
+                border-bottom: none;
+            }
+
+            .dropdown-content a:hover {
+                background: rgba(248, 249, 250, 0.8);
+                color: #0066cc;
+            }
+
+            .dropdown-content a::after {
+                content: '>';
+                font-size: 0.8rem;
+                opacity: 0;
+                transition: opacity 0.3s, transform 0.3s;
+                transform: translateX(-5px);
+            }
+
+            .dropdown-content a:hover::after {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    @media (max-width:1024px) {
+        .mobile-dropdown-content {
+            display: none;
+            padding-left: 20px;
+            background: transparent;
+            margin-top: 8px;
+        }
+
+            .mobile-dropdown-content.show {
+                display: block;
+            }
+
+            .mobile-dropdown-content a {
+                padding: 6px 0;
+                font-size: 0.9rem;
+                opacity: 0.8;
+                line-height: 1.2;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+                .mobile-dropdown-content a::after {
+                    content: '>';
+                    font-size: 0.8rem;
+                    opacity: 0.6;
+                }
+
+        .mobile-dropdown-toggle {
+            cursor: pointer;
+        }
+    }
+</style>
+
+<header class="site-header {{ if .IsHome }}home-header{{ end }}">
+    <div id="overlay" class="overlay-menu">
+        <ul class="overlay-menu-list">
+            <li>
+                <a href="/" class="nav-link duration-200 hover:opacity-70">
+                    HOME
+                </a>
+            </li>
+            <li>
+                <a href="/software/" class="nav-link duration-200 hover:opacity-70">
+                    SOFTWARE
+                </a>
+            </li>
+            <li>
+                <a href="/services/" class="nav-link duration-200 hover:opacity-70">
+                    SERVICES
+                </a>
+            </li>
+            <li>
+                <a href="/testimonials/" class="nav-link duration-200 hover:opacity-70">
+                    TESTIMONIALS
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="nav-link duration-200 hover:opacity-70 mobile-dropdown-toggle"
+                   data-target="mobile-blog">
+                    BLOGS/CASE STUDIES
+                </a>
+                <div class="mobile-dropdown-content" id="mobile-blog">
+                    <a href="/blog/news/" class="nav-link duration-200 hover:opacity-70">News</a>
+                    <a href="/blog/softwarecases/" class="nav-link duration-200 hover:opacity-70">Software Cases</a>
+                </div>
+            </li>
+            <li>
+                <a href="javascript:void(0)" class="nav-link duration-200 hover:opacity-70 mobile-dropdown-toggle"
+                   data-target="mobile-other-software">
+                    OTHER SOFTWARE
+                </a>
+                <div class="mobile-dropdown-content" id="mobile-other-software">
+                    <a href="/other-software/products/" class="nav-link duration-200 hover:opacity-70">Products</a>
+                    <a href="/other-software/cases/" class="nav-link duration-200 hover:opacity-70">Other Cases</a>
+                </div>
+            </li>
+            <li>
+                <a href="/contact/" class="nav-link duration-200 hover:opacity-70">
+                    CONTACT US
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <nav class="main-nav flex items-center justify-between flex-wrap {{ if .IsHome }}nav-home{{ end }}">
+        <div class="flex items-center flex-shrink-0 text-xl mr-6 brand-block">
+            <a href="{{ .Site.BaseURL }}" class="flex items-center">
+                <img alt="{{ .Site.Params.logo.alt }}" class="{{ .Site.Params.logo.size }} mr-3" src="{{ .Site.Params.logo.main | relURL }}">
+                <span class="font-bold text-2xl tracking-tig">{{ .Site.Title }}</span>
+            </a>
+        </div>
+
+        <div class="block lg:hidden">
+            <button id="hamburgerbtn" aria-label="menu" class="hamburger-btn">
+                <span class="hb-bar"></span><span class="hb-bar"></span><span class="hb-bar"></span>
+            </button>
+        </div>
+
+        <div class="hidden w-full flex-grow lg:flex lg:items-center lg:w-auto" id="mobileMenu">
+            <div class="lg:flex-grow"></div>
+            <div class="desktop-links">
+                <a href="/" class="nav-link duration-200 hover:opacity-60 mr-8 {{ if eq .RelPermalink "/" }}is-active{{ end }}">
+                    HOME
+                </a>
+                <a href="/software/" class="nav-link duration-200 hover:opacity-60 mr-8 {{ if hasPrefix .RelPermalink "/software/" }}is-active{{ end }}">
+                    SOFTWARE
+                </a>
+                <a href="/services/" class="nav-link duration-200 hover:opacity-60 mr-8 {{ if hasPrefix .RelPermalink "/services/" }}is-active{{ end }}">
+                    SERVICES
+                </a>
+                <a href="/testimonials/" class="nav-link duration-200 hover:opacity-60 mr-8 {{ if hasPrefix .RelPermalink "/testimonials/" }}is-active{{ end }}">
+                    TESTIMONIALS
+                </a>
+
+                <!-- BLOGS/CASE STUDIES 下拉菜单 -->
+                <div class="dropdown">
+                    <span class="nav-link duration-200 hover:opacity-60 mr-8 cursor-pointer {{ if or (hasPrefix .RelPermalink "/blog/") (hasPrefix .RelPermalink "/categories/turbotides/") }}is-active{{ end }}">
+                        BLOGS/CASE STUDIES
+                    </span>
+                    <div class="dropdown-content">
+                        <a href="/blog/news/">News</a>
+                        <a href="/blog/softwarecases/">Software Cases</a>
+                    </div>
+                </div>
+
+                <!-- OTHER SOFTWARE 下拉菜单 -->
+                <div class="dropdown">
+                    <span class="nav-link duration-200 hover:opacity-60 mr-8 cursor-pointer {{ if hasPrefix .RelPermalink "/other-software/" }}is-active{{ end }}">
+                        OTHER SOFTWARE
+                    </span>
+                    <div class="dropdown-content">
+                        <a href="/other-software/products/">Products</a>
+                        <a href="/other-software/cases/">Other Cases</a>
+                    </div>
+                </div>
+
+                <a href="/contact/" class="nav-link duration-200 hover:opacity-60 mr-8 {{ if hasPrefix .RelPermalink "/contact/" }}is-active{{ end }}">
+                    CONTACT US
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+    const hamburger = document.getElementById('hamburgerbtn');
+    const overlay = document.getElementById('overlay');
+
+    if (hamburger && overlay) {
+        hamburger.addEventListener('click', () => {
+            overlay.classList.toggle('open');
+            document.body.classList.toggle('no-scroll', overlay.classList.contains('open'));
+        });
+        overlay.querySelectorAll('a:not(.mobile-dropdown-toggle)').forEach(a => {
+            a.addEventListener('click', () => {
+                overlay.classList.remove('open');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+    }
+
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            const dropdown = document.getElementById(targetId);
+            if (dropdown) {
+                dropdown.classList.toggle('show');
+            }
+        });
+    });
+});</script>

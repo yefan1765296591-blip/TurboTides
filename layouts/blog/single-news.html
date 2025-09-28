@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section class="news-page services-page">
+    <div class="services-wrap">
+        <h1 class="s-page-title" data-ani="fade-up">{{ .Title }}</h1>
+        {{ with .Description }}
+        <p class="s-page-description" data-ani="fade-up">{{ . }}</p>
+        {{ end }}
+        <div class="news-meta-container">
+            <div class="news-article-meta">
+                <span class="news-date">{{ .Date.Format "2006-01-02" }}</span>
+            </div>
+            <a href="/blog/news/" class="news-return-button">
+                &lt; Return
+            </a>
+        </div>
+        <div class="news-content">
+            {{ .Content }}
+        </div>
+    </div>
+</section>
+
+<script>document.addEventListener('DOMContentLoaded', () => {
+  ['.s-page-title','.s-page-description'].forEach(sel => {
+    document.querySelectorAll(sel).forEach(el=>{
+      requestAnimationFrame(()=>el.classList.add('is-visible'));
+    });
+  });
+});</script>
+{{ end }}

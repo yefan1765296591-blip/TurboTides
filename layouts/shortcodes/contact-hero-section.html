@@ -1,0 +1,145 @@
+﻿<style>
+    .contact-hero {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        margin-bottom: 4rem;
+        background: linear-gradient(135deg, rgba(68, 114, 196, 0.05), rgba(54, 88, 153, 0.08));
+        padding: 3rem 0;
+    }
+
+    .contact-hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .hero-content {
+        order: 1;
+    }
+
+        .hero-content h2 {
+            font-size: 2.2rem;
+            color: #1f262b;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+    .hero-features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .hero-feature {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.8rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .hero-feature-icon {
+        width: 32px;
+        height: 32px;
+        background: #4472c4;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+    }
+
+    .hero-feature-text {
+        font-size: 0.9rem;
+        color: #555;
+        font-weight: 500;
+    }
+
+    .hero-image {
+        order: 2;
+    }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+    @media (max-width: 768px) {
+        .contact-hero-container {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            order: 2;
+            text-align: center;
+        }
+
+        .hero-image {
+            order: 1;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+        }
+
+        .hero-features {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="contact-hero">
+    <div class="contact-hero-container">
+        <div class="hero-content">
+            <h2>Let's Work Together</h2>
+            <p>Ready to transform your turbomachinery projects? Our expert team is here to provide comprehensive support and innovative solutions.</p>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">🚀</div>
+                    <span class="hero-feature-text">Expert Support</span>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">⚡</div>
+                    <span class="hero-feature-text">Quick Response</span>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">🛠️</div>
+                    <span class="hero-feature-text">Custom Solutions</span>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">🤝</div>
+                    <span class="hero-feature-text">Partnership Focus</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <picture>
+                <source srcset="/img/about/company.webp" type="image/webp">
+                <img src="/img/about/company.jpg" alt="TurboTides Team" loading="lazy">
+            </picture>
+        </div>
+    </div>
+</div>
