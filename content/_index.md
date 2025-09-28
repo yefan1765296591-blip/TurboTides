@@ -8,7 +8,7 @@ carousel:
 ---
 
 {{< video-hero
-    video="vidoes/waves.mp4"
+    video="/videos/waves.mp4"
     headline="THE TIDES ARE TURNING WITH"
     sub1="TURBOTIDES"
     sub2="The Turbomachinery Integrated Design System"
