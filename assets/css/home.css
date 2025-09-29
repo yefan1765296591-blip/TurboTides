@@ -44,7 +44,7 @@
 /* === 3. Hero 内容区域 === */
 .hero-center-news {
     position: absolute;
-    top: 18%;
+    bottom: 25%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -69,7 +69,7 @@
 
 .hero-headlines {
     position: absolute;
-    top: 38%;
+    top: 33%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -889,11 +889,11 @@
     }
 
     .hero-center-news {
-        top: 14%;
+        bottom: 20%;
     }
 
     .hero-headlines {
-        top: 40%;
+        top: 38%;
         width: 90%;
     }
 
